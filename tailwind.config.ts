@@ -12,6 +12,20 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        normal: ['Montserrat_Alternatives', 'sans-serif']
+      },
+      fontWeight: {
+        hairline: '100',
+        thin: '200',
+        extralight: '300',
+        light: '400',
+        normal: '500',
+        medium: '600',
+        semibold: '700',
+        bold: '800',
+        black: '900'
+      },
     },
   },
   plugins: [],
