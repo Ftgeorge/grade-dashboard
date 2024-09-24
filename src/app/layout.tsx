@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Montserrat_Alternates } from "@next/font/google"
+import { Montserrat_Alternates } from "next/font/google"
 import "./globals.css";
 
 const montserrat = Montserrat_Alternates({

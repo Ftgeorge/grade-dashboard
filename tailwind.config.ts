@@ -13,7 +13,7 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        normal: ['Montserrat_Alternatives', 'sans-serif']
+        montserrat: ['Montserrat_Alternates', 'sans-serif'],
       },
       fontWeight: {
         hairline: '100',

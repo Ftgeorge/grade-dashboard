@@ -11,7 +11,7 @@ export default function SignUp() {
         <>
             <div className="bg-white w-full h-screen flex justify-center items-center">
                 <div className="">
-                    <h1 className="text-black">Signup</h1>
+                    <h1 className="text-black font-normal">Signup</h1>
                     <button onClick={navigatenext}>
                         signup
                     </button>
