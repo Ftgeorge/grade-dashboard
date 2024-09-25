@@ -12,9 +12,6 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      fontFamily: {
-        montserrat: ['Montserrat_Alternates', 'sans-serif'],
-      },
       fontWeight: {
         hairline: '100',
         thin: '200',
