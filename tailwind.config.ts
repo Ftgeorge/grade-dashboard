@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#1F3A93',
+        'primary-80': 'rgba(31, 58, 147, 0.1)',
       },
       fontWeight: {
         hairline: '100',

@@ -20,7 +20,7 @@ const SignIn: React.FC<SignInProps> = () => {
     const [error, setError] = useState<string | null>(null);
     
     const handleLogin = () => {
-        router.push('/auth/sign-up')
+        router.push('/dashboard/home')
         console.log(`Email: ${email}, Password: ${password}`);
     }
 
