@@ -34,8 +34,8 @@ const SignIn: React.FC<SignInProps> = () => {
                 <div className="border border-1 border-gray-200 rounded-lg p-8 py-10 gap-6 flex w-1/5 flex-col justify-start items-center">
                     <h1 className="text-[#1F3A93] font-normal text-center text-2xl">G<span className="text-black">rade</span></h1>
                     <div className="gap-1 flex-col flex">
-                        <h1 className="text-black font-montserrat font-semibold text-center text-xl">Log in to your account</h1>
-                        <h1 className="text-black font-montserrat font-normal text-center text-xs">Access your dashboard and start exploring</h1>
+                        <h1 className="text-black font-bold text-center text-xl">Log in to your account</h1>
+                        <h1 className="text-black font-bold text-center text-xs">Access your dashboard and start exploring</h1>
                     </div>
                     <div className="flex flex-col gap-3 w-full">
                         <input className="w-full h-10 bg-black rounded-lg text-xs px-4 border border-1 bg-gray-50" placeholder="email address or phone" value={email} onChange={(e) => setEmail(e.target.value)} />

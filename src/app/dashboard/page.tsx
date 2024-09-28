@@ -9,7 +9,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import AuthFooter from "@/app/components/constants/authFooter";
 import { useRouter, usePathname } from "next/navigation";
-import { CiSearch } from "react-icons/ci";
+import Image from "next/image";
 
 interface MenuItem {
     label?: string;
@@ -61,7 +61,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="bg-gray-50 w-full h-screen flex flex-row justify-start items-center">
             <div className="bg-white w-80 h-screen py-6 px-8 flex flex-col gap-5">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-black text-3xl font-normal"><span className="text-[#1F3A93]">G</span>rade</h1>
+                    <h1 className="text-black text-3xl font-montserrat font-normal"><span className="text-[#1F3A93]">G</span>rade</h1>
                     <MdOutlineSpaceDashboard className="text-gray-400 text-xl" />
                 </div>
                 <div className="py-2 gap-2 flex flex-col">
@@ -96,7 +96,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </div>
                 <div className="w-full mt-auto mb-5 flex flex-col justify-center items-center gap-10">
                     <div className="flex flex-col gap-2 items-center">
-                        <div className="w-10 h-10 rounded-full bg-black"></div>
+                        <div className="w-10 h-10 rounded-full bg-black">
+                            <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="h-full w-full rounded-full" alt=""/>
+                        </div>
                         <div className="flex-col flex justify-center items-center">
                             <h1 className="text-black font-normal text-sm">Fabunmi George</h1>
                             <h1 className="text-gray-500 text-xs">ftgeorgean@gmail.com</h1>
@@ -109,7 +111,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <div className="w-full h-14 bg-white px-16 rounded-lg flex flex-row items-center justify-between">
                     <h1 className="font-medium text-base text-black">{today}</h1>
                     <div className="flex flex-row h-10 gap-3 justify-center items-center">
-                        <LuSearch className="text-xl text-[$4A5568]" />
+                        <LuSearch className="text-xl text-[#2D3748]" />
                         <input
                             className="rounded-xl px-4 h-10 w-96 bg-white text-[#2D3748]"
                             placeholder="Search"

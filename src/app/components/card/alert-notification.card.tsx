@@ -32,15 +32,15 @@ const AlertNotificationCard: React.FC<AlertNotificationCardProps> = ({
                 )}
                 <div className="flex-grow ml-3"> {/* Added margin to separate text from the image */}
                     {type === 'alert' ? (
-                        <h3 className="font-bold text-red-600">{message}</h3>
+                        <h3 className="font-medium text-red-600">{message}</h3>
                     ) : (
-                        <h3 className="font-bold text-black">{message}</h3>
+                        <h3 className="font-medium text-black">{message}</h3>
                     )}
                     <div className='flex-row flex justify-between items-center'>
                         {username && studentId && (
-                            <p className="text-gray-600 text-sm">Mat no: {studentId}</p>
+                            <p className="text-gray-600 font-normal text-sm">Mat no: {studentId}</p>
                         )}
-                        <p className="text-gray-500 text-xs">{time}</p>
+                        <p className="text-gray-500 font-normal text-xs">{time}</p>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ const RecentActivityLog: React.FC<RecentActivityLogProps> = ({ message, time }) 
         <div className='w-full'>
             <div className={`flex items-center py-3 mb-2 rounded-lg`}>
                 <div className="flex-grow"> 
-                        <h3 className="font-bold text-black">{message}</h3>
+                        <h3 className="font-medium text-black">{message}</h3>
                     <div className='flex-row flex justify-between items-center'>
                         <p className="text-gray-500 text-xs">{time}</p>
                     </div>

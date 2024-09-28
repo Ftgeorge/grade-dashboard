@@ -245,7 +245,7 @@ export default function DashHome() {
                             </div>
                             <div className='w-full min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
                                 <div className='w-full flex flex-row justify-between items-center'>
-                                    <h1 className='text-black font-medium text-xl'>Student Activity Overview</h1>
+                                    <h1 className='text-black font-semibold text-base'>Student Activity Overview</h1>
                                     <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
                                         <PiStudentFill className='text-black text-2xl text-primary-80' />
                                     </div>
@@ -262,7 +262,7 @@ export default function DashHome() {
                             </div>
                             <div className='w-full min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
                                 <div className='w-full flex flex-row justify-between items-center'>
-                                    <h1 className='text-black font-medium text-xl'>Recent Activity Log</h1>
+                                    <h1 className='text-black font-semibold text-base'>Recent Activity Log</h1>
                                     <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
                                         <FaClock className='text-black text-2xl text-primary-80' />
                                     </div>
@@ -280,7 +280,7 @@ export default function DashHome() {
                         </div>
                         <div className='bg-white min-h-fit w-full border border-1 border-gray-200 rounded-xl p-6 flex flex-col'>
                             <div className='w-full flex flex-row justify-between items-center'>
-                                <h1 className='text-black text-xl font-medium'>Alerts/Notifications</h1>
+                                <h1 className='text-black text-base font-semibold'>Alerts/Notifications</h1>
                                 <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
                                     <BiErrorCircle className='text-black text-2xl text-primary-80' />
                                 </div>

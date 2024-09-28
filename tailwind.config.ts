@@ -21,7 +21,15 @@ const config: Config = {
         'primary-green-20':'rgba(40, 167, 69, 0.2)',
       },
       fontFamily: {
-        montserrat: ['Montserrat Alternates', 'sans-serif'], // Ensure space is present
+        montserrat: ['"Montserrat Alternates"', 'sans-serif'],
+      },
+      fontWeight: {
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
       },
     },
   },
