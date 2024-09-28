@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { BsBarChart } from "react-icons/bs";
-import { LuLayoutDashboard, LuMailOpen } from "react-icons/lu";
+import { LuLayoutDashboard, LuMailOpen, LuSearch } from "react-icons/lu";
 import { FaUserGraduate } from "react-icons/fa";
 import { MdErrorOutline, MdSettings, MdOutlineSpaceDashboard } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import AuthFooter from "@/app/components/constants/authFooter";
 import { useRouter, usePathname } from "next/navigation";
+import { CiSearch } from "react-icons/ci";
 
 interface MenuItem {
     label?: string;
@@ -19,7 +20,7 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
     { group: "Main" },
-    { label: 'Home', icon: <LuLayoutDashboard />, path: '/dashboard/home' },
+    { label: 'Overview', icon: <LuLayoutDashboard />, path: '/dashboard/overview' },
     { label: 'Review Malpractice', icon: <MdErrorOutline />, path: '/dashboard/review-malpractice' },
     { label: 'Student Management', icon: <FaUserGraduate />, path: '/dashboard/student-management' },
     { label: 'Reports', icon: <BsBarChart />, path: '/dashboard/reports' },
@@ -104,11 +105,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <AuthFooter />
                 </div>
             </div>
-            <div className="h-screen w-full">
-                <div className="w-full h-20 bg-white px-16 rounded-lg flex flex-row items-center justify-between">
+            <div className="h-full w-full">
+                <div className="w-full h-14 bg-white px-16 rounded-lg flex flex-row items-center justify-between">
                     <h1 className="font-medium text-base text-black">{today}</h1>
                     <div className="flex flex-row h-10 gap-3 justify-center items-center">
-                        <input className="rounded-3xl px-4 h-12 w-96 bg-gray-100" placeholder="search" />
+                        <LuSearch className="text-xl text-[$4A5568]" />
+                        <input
+                            className="rounded-xl px-4 h-10 w-96 bg-white text-[#2D3748]"
+                            placeholder="Search"
+                        />
                     </div>
                 </div>
                 <div className="p-5 px-16">

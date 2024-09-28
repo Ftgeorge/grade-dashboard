@@ -13,6 +13,8 @@ import FilterButton from '@/app/components/buttons/FilterButton';
 import AlertNotificationCard from '@/app/components/card/alert-notification.card';
 import { HiUsers } from 'react-icons/hi2';
 import { PiStudentFill } from 'react-icons/pi';
+import { FaClock } from 'react-icons/fa6';
+import RecentActivityLog from '@/app/components/card/recent-activity.card';
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, CategoryScale, LinearScale, BarElement, Title, LineElement, PointElement);
 
 interface AlertNotificationCardProps {
@@ -25,45 +27,64 @@ interface AlertNotificationCardProps {
 }
 
 export default function DashHome() {
-    const multiLineData = {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    const barData = {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // X-axis labels
         datasets: [
             {
                 label: 'Active Students',
-                data: [50, 60, 55, 70],
-                borderColor: 'rgba(40, 167, 69, 0.8)', // Green for active students
-                backgroundColor: 'rgba(40, 167, 69, 0.2)',
-                borderWidth: 2,
-                fill: true,
+                data: [50, 60, 55, 60, 53], // Data for the first dataset
+                backgroundColor: 'rgba(31, 58, 147, 0.8)',
+                borderColor: 'white',
+                borderWidth: 3,
+                borderRadius: { topLeft: 20, topRight: 20 }, // Add top border radius to the bars
+                barThickness: 25, // Make the bars thinner
             },
             {
                 label: 'Inactive Students',
-                data: [20, 15, 30, 25],
-                borderColor: 'rgba(255, 0, 0, 0.8)', // Red for inactive students
-                backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                borderWidth: 2,
-                fill: true,
+                data: [20, 15, 30, 25, 23], // Data for the second dataset
+                backgroundColor: 'rgba(31, 58, 147, 0.4)', // Color for the second dataset
+                borderColor: 'white',
+                borderWidth: 3,
+                borderRadius: { topLeft: 20, topRight: 20 }, // Add top border radius to the bars
+                barThickness: 25, // Make the bars thinner
             },
         ],
     };
-    const multiLineOptions = {
+
+    const barOptions = {
         responsive: true,
         plugins: {
-            legend: { display: true },
-            title: { display: true, text: 'Student Activity Overview' },
-        },
-        scales: {
-            x: { beginAtZero: true },
-            y: {
-                beginAtZero: true,
-                title: { display: true, text: 'Number of Students' },
+            legend: { display: false }, // Show legend
+            title: { display: false, text: 'Student Activity Overview' }, // Title of the chart
+            datalabels: {
+                display: false, // Disable the display of data labels
             },
         },
+        scales: {
+            x: {
+                title: { display: false, text: 'Weeks' }, // Title for X-axis
+            },
+            y: {
+                beginAtZero: true, // Start Y-axis at zero
+                title: { display: false, text: 'Number of Students' }, // Title for Y-axis
+                grid: {
+                    display: false, // Remove grid lines
+                },
+            },
+        },
+        interaction: {
+            intersect: false, // Change this to false
+        },
+        barThickness: 20, // Set the width of the bars
+        barSpacing: 10, // Set the spacing between the bars
     };
+
+
+
     // Calculate Averages for Doughnut Chart
-    const totalActiveStudents = multiLineData.datasets[0].data.reduce((a, b) => a + b, 0);
-    const totalInactiveStudents = multiLineData.datasets[1].data.reduce((a, b) => a + b, 0);
-    const numberOfWeeks = multiLineData.labels.length;
+    const totalActiveStudents = barData.datasets[0].data.reduce((a, b) => a + b, 0);
+    const totalInactiveStudents = barData.datasets[1].data.reduce((a, b) => a + b, 0);
+    const numberOfWeeks = barData.labels.length;
 
     // Averages of Active and Inactive Students
     const averageActiveStudents = totalActiveStudents / numberOfWeeks;
@@ -71,14 +92,14 @@ export default function DashHome() {
 
     // Doughnut Chart Data
     const doughnutData = {
-        labels: ['Average Active Students', 'Average Inactive Students'],
+        labels: ['Currently Enrolled', 'Inactive Students'],
         datasets: [
             {
                 data: [averageActiveStudents, averageInactiveStudents],
-                backgroundColor: ['rgba(40, 167, 69, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-                hoverBackgroundColor: ['rgba(40, 167, 69, 0.8)', 'rgba(255, 99, 132, 0.8)'],
-                borderColor: ['rgba(40, 167, 69, 1)', 'rgba(255, 99, 132, 1)'],
-                borderWidth: 2,
+                backgroundColor: ['rgba(31, 58, 147, 0.8)', 'rgba(31, 58, 147, 0.4)'],
+                hoverBackgroundColor: ['rgba(31, 58, 147, 0.8)', 'rgba(31, 58, 147, 0.4)'],
+                borderColor: ['white', 'white'],
+                borderWidth: 2, // No border width to avoid gaps
             },
         ],
     };
@@ -86,22 +107,34 @@ export default function DashHome() {
     // Doughnut Chart Options
     const doughnutOptions = {
         responsive: true,
+        cutout: '80%',
+        elements: {
+            arc: {
+                borderWidth: 0,
+            },
+        },
         plugins: {
             legend: {
-                // Explicitly specify the valid legend position
                 position: 'bottom' as 'bottom',
+                align: 'end' as 'end', // Add this line
+                // padding: 40, // Add this line
                 labels: {
-                    usePointStyle: true,  // This makes the legend items circular
-                    pointStyle: 'circle', // Ensures the point style is a circle
-                    cutout: '20%',
+                    usePointStyle: true, // Use circular legend icons
+                    pointStyle: 'circle', // Specify point style as circle
+                    padding: 10, // Adjust padding between legend items
+                    boxWidth: 8, // Adjust legend circle size
                 },
+            },
+            datalabels: {
+                display: false, // Disable the display of data labels
             },
             tooltip: {
                 callbacks: {
                     label: (tooltipItem: TooltipItem<'doughnut'>) => {
                         // Cast tooltipItem.raw to number
-                        const value = tooltipItem.raw as number;
-                        return `${tooltipItem.label}: ${value.toFixed(2)}`;
+                        const label = tooltipItem.label || '';
+                        const value = tooltipItem.raw; // This gets the value of the segment
+                        return `${label}: ${value} students`; // Custom tooltip text
                     },
                 },
                 backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -151,7 +184,6 @@ export default function DashHome() {
         { message: "Reminder: Exam proctoring system active during exams", time: "2 hours ago", username: "Admin", studentId: "STU001234" },
         { message: "Warning: Irregular behavior detected in exam attempt by STU001234", time: "3 hours ago", username: "Admin", studentId: "STU001234" },
         { message: "Action required: Verify identity for exam ID STU001234", time: "4 hours ago", username: "Admin", studentId: "STU001234" },
-        { message: "New violation reported: Late submission by STU012345", time: "5 hours ago", username: "Admin", studentId: "STU001234" },
     ];
 
 
@@ -167,9 +199,7 @@ export default function DashHome() {
 
     // Dummy Activity Log Content
     const activityLog = [
-        "Student John Doe flagged for talking.",
         "Student Jane Smith logged in.",
-        "Cheating detected in Mathematics exam.",
         "Device tampering detected in History exam.",
     ];
     const filterOptions = [
@@ -181,11 +211,11 @@ export default function DashHome() {
     return (
         <>
             <DashboardLayout>
-                <div className="flex flex-col gap-5">
-                    <div className="w-full flex-row flex justify-evenly gap-10">
-                        <div className='flex flex-col w-full gap-10'>
-                            <div className='flex flex-row gap-10 justify-between w-full'>
-                                <div className='gap-10 w-80 bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
+                <div className="flex flex-col gap-5 h-[calc(100vh-105px)] overflow-y-auto">
+                    <div className="w-full flex-row flex justify-evenly gap-5">
+                        <div className='flex flex-col w-full gap-5'>
+                            <div className='flex flex-row gap-5 justify-between w-full'>
+                                <div className='gap-5 flex-grow w-full bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
                                     <div className='rounded-xl border border-1 border-primary-80 bg-primary-20 flex justify-center items-center w-12 h-12'>
                                         <FaBook className="text-primary-80 text-2xl" />
                                     </div>
@@ -194,7 +224,7 @@ export default function DashHome() {
                                         <h1 className='text-gray-700 font-normal text-base'>Total Exams monitored</h1>
                                     </div>
                                 </div>
-                                <div className='gap-10 w-80 bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
+                                <div className='gap-5 w-full flex-grow bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
                                     <div className='rounded-xl border border-1 border-primary-yellow bg-primary-yellow-20 flex justify-center items-center w-12 h-12'>
                                         <IoMdWarning className="text-primary-yellow text-2xl" />
                                     </div>
@@ -203,7 +233,7 @@ export default function DashHome() {
                                         <h1 className='text-gray-700 font-normal text-base'>Flagged offences</h1>
                                     </div>
                                 </div>
-                                <div className='gap-10 w-80 bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
+                                <div className='gap-5 w-full flex-grow bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
                                     <div className='rounded-xl border border-1 border-primary-green bg-primary-green-20 flex justify-center items-center w-12 h-12'>
                                         <FaBook className="text-primary-green text-2xl" />
                                     </div>
@@ -213,24 +243,42 @@ export default function DashHome() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='w-full flex-grow h-full bg-white border border-1 border-gray-200 rounded-xl p-6'>
+                            <div className='w-full min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
                                 <div className='w-full flex flex-row justify-between items-center'>
                                     <h1 className='text-black font-medium text-xl'>Student Activity Overview</h1>
                                     <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
                                         <PiStudentFill className='text-black text-2xl text-primary-80' />
                                     </div>
                                 </div>
-                                <div className='flex flex-row items-center justify-center'>
-                                    <div className='W-full flex-grow'>
-                                        <Line data={multiLineData} options={multiLineOptions} />
+                                <div className='flex flex-row gap-8 items-center justify-between mb-5'>
+                                    <div className='w-5/6 flex-grow h-72'>
+                                        <Bar data={barData} options={barOptions} /> {/* Render the bar chart */}
                                     </div>
-                                    <div className='relative w-80'>
+                                    <div className='w-96 h-72 relative'>
                                         <Doughnut data={doughnutData} options={doughnutOptions} />
-                                        <HiUsers className='absolute inset-0 m-auto text-gray-400 text-3xl' />
-                                    </div>                               </div>
+                                        <HiUsers className='absolute inset-0 m-auto text-gray-400 text-3xl translate-y-[-50%] translate-x-[-20%]' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='w-full min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
+                                <div className='w-full flex flex-row justify-between items-center'>
+                                    <h1 className='text-black font-medium text-xl'>Recent Activity Log</h1>
+                                    <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
+                                        <FaClock className='text-black text-2xl text-primary-80' />
+                                    </div>
+                                </div>
+                                <div className='w-full flex flex-col'>
+                                    {activityLog.map((log, index) => (
+                                        <RecentActivityLog
+                                            key={index}
+                                            message={log}
+                                            time="Just now"
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                        <div className='bg-white flex-grow w-full border border-1 border-gray-200 rounded-xl p-6 flex flex-col h-5/6'>
+                        <div className='bg-white min-h-fit w-full border border-1 border-gray-200 rounded-xl p-6 flex flex-col'>
                             <div className='w-full flex flex-row justify-between items-center'>
                                 <h1 className='text-black text-xl font-medium'>Alerts/Notifications</h1>
                                 <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
@@ -248,7 +296,7 @@ export default function DashHome() {
                                     />
                                 ))}
                             </div>
-                            <div className='w-full py-4 flex-grow h-full overflow-y-auto'> {/* Keep the scrollable area within the limits */}
+                            <div className='w-full py-4 overflow-y-auto max-h-[calc(100vh-260px)]'> {/* Keep the scrollable area within the limits */}
                                 {filter === 'all' && (
                                     <>
                                         {/* Combine notifications and alerts */}
