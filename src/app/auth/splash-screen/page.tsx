@@ -28,7 +28,7 @@ export default function Splashscreen() {
             <div className="bg-white w-full h-screen flex justify-center items-center">
                 <div className={`flex flex-col gap-5 transition-opacity duration-1000 ease-in-out ${fade}`}>
                     <h1
-                        className={`text-2xl font-normal text-center  transition-opacity duration-1000 ease-in-out ${fade}`}
+                        className={`text-2xl font-normal text-center font-montserrat-medium transition-opacity duration-1000 ease-in-out ${fade}`}
                         style={{ color: 'rgba(0, 0, 0)' }}
                     >
                         <span className="text-[#1F3A93]">G</span>rade

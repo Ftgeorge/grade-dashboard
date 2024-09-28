@@ -10,18 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#1F3A93',
-        'primary-80': 'rgba(31, 58, 147, 0.1)',
+        'primary-20': 'rgba(31, 58, 147, 0.2)',
+        'primary-40': 'rgba(31, 58, 147, 0.4)',
+        'primary-60': 'rgba(31, 58, 147, 0.6)',
+        'primary-80': 'rgba(31, 58, 147, 0.8)',
+        'primary-main': 'rgba(31, 58, 147, 0.1)',
+        'primary-yellow':'rgba(255, 165, 0, 1)',
+        'primary-yellow-20':'rgba(255, 165, 0, 0.2)',
+        'primary-green':'rgba(40, 167, 69, 1)',
+        'primary-green-20':'rgba(40, 167, 69, 0.2)',
       },
-      fontWeight: {
-        hairline: '100',
-        thin: '200',
-        extralight: '300',
-        light: '400',
-        normal: '500',
-        medium: '600',
-        semibold: '700',
-        bold: '800',
-        black: '900'
+      fontFamily: {
+        montserrat: ['Montserrat-Alternates', 'sans-serif'],
       },
     },
   },

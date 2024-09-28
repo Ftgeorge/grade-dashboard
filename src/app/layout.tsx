@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Montserrat_Alternates } from "next/font/google"
 import "./globals.css";
 
-const montserrat = Montserrat_Alternates({
-  subsets:['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} antialiased`}
+        className={`antialiased`}
       >
         {children}
       </body>

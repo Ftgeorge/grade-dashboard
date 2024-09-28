@@ -58,9 +58,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     return (
         <div className="bg-gray-50 w-full h-screen flex flex-row justify-start items-center">
-            <div className="bg-white w-72 h-screen p-4 flex flex-col gap-5">
+            <div className="bg-white w-80 h-screen py-6 px-8 flex flex-col gap-5">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-black text-2xl font-normal"><span className="text-[#1F3A93]">G</span>rade</h1>
+                    <h1 className="text-black text-3xl font-normal"><span className="text-[#1F3A93]">G</span>rade</h1>
                     <MdOutlineSpaceDashboard className="text-gray-400 text-xl" />
                 </div>
                 <div className="py-2 gap-2 flex flex-col">
@@ -75,7 +75,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         return (
                             <div key={item.label}>
                                 <div
-                                    className={`py-2 gap-2 flex items-center justify-start cursor-pointer ${selected === item.label ? 'border border-1 px-2 rounded-lg border-[#1F3A93] bg-primary-80' : 'border border-1 px-2 rounded-lg border-white bg-white'
+                                    className={`py-2 gap-2 flex items-center justify-start cursor-pointer ${selected === item.label ? 'border border-1 px-2 rounded-lg border-[#1F3A93] bg-primary-main' : 'border border-1 px-2 rounded-lg border-white bg-white'
                                         }`}
                                     onClick={() => handleMenuItemClick(item.label ?? '', item.path ?? '')}
                                 >
@@ -105,13 +105,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </div>
             </div>
             <div className="h-screen w-full">
-                <div className="w-full h-20 bg-white px-4 rounded-lg flex flex-row items-center justify-between">
+                <div className="w-full h-20 bg-white px-16 rounded-lg flex flex-row items-center justify-between">
                     <h1 className="font-medium text-base text-black">{today}</h1>
                     <div className="flex flex-row h-10 gap-3 justify-center items-center">
                         <input className="rounded-3xl px-4 h-12 w-96 bg-gray-100" placeholder="search" />
                     </div>
                 </div>
-                <div className="p-4">
+                <div className="p-5 px-16">
                     {children}
                 </div>
             </div>
