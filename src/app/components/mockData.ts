@@ -9,7 +9,7 @@ export interface Student {
     email: string;
     timestamp: string;
     offenseType: string;
-    status: string;
+    status: "Pending Review" | "Terminated" | "blocked" | "active" | "suspended" | "Resolved" | "Under Investigation" | "Under Review";
     subjectHistory: {
         subject: string;
         score: string;
@@ -94,7 +94,7 @@ export const mockData: Student[] = [
     },
     {
         id: 4,
-        profileImage: "https://images.unsplash.com/photo-1511541255253-348f9f0eeb0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1529663557617-39f3243b531a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Emily Davis",
         studentId: "S12348",
         email: "emily@example.com",
@@ -116,7 +116,7 @@ export const mockData: Student[] = [
     },
     {
         id: 5,
-        profileImage: "https://images.unsplash.com/photo-1565722320621-45591d0f16b5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1552493450-2b5ce80ed13f?q=80&w=2014&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Daniel Brown",
         studentId: "S12349",
         email: "daniel@example.com",
@@ -138,7 +138,7 @@ export const mockData: Student[] = [
     },
     {
         id: 6,
-        profileImage: "https://images.unsplash.com/photo-1519752418803-3b0c5e25dba1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1531558297330-791932f4f398?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Sophia Wilson",
         studentId: "S12350",
         email: "sophia@example.com",
@@ -160,7 +160,7 @@ export const mockData: Student[] = [
     },
     {
         id: 7,
-        profileImage: "https://images.unsplash.com/photo-1587332787026-df0ff1ccdc80?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "David Lee",
         studentId: "S12351",
         email: "david@example.com",
@@ -182,7 +182,7 @@ export const mockData: Student[] = [
     },
     {
         id: 8,
-        profileImage: "https://images.unsplash.com/photo-1585095051741-5ae5e88a4825?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?q=80&w=1978&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Olivia Taylor",
         studentId: "S12352",
         email: "olivia@example.com",
@@ -204,7 +204,7 @@ export const mockData: Student[] = [
     },
     {
         id: 9,
-        profileImage: "https://images.unsplash.com/photo-1560364761761-71e47ac6e72e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1440451185281-11ff5853ce0a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Liam Harris",
         studentId: "S12353",
         email: "liam@example.com",
@@ -226,7 +226,7 @@ export const mockData: Student[] = [
     },
     {
         id: 10,
-        profileImage: "https://images.unsplash.com/photo-1615451941920-80a3de54039c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1531901599143-df5010ab9438?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Ava Robinson",
         studentId: "S12354",
         email: "ava@example.com",
@@ -248,7 +248,7 @@ export const mockData: Student[] = [
     },
     {
         id: 11,
-        profileImage: "https://images.unsplash.com/photo-1592971597067-fd3e5bffbd81?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1617244145995-f79f45448c5c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Ethan Green",
         studentId: "S12355",
         email: "ethan@example.com",
@@ -270,7 +270,7 @@ export const mockData: Student[] = [
     },
     {
         id: 12,
-        profileImage: "https://images.unsplash.com/photo-1578003452892-8c3bbd659635?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        profileImage: 'https://images.unsplash.com/photo-1551692702-edf4a1d740bf?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         studentName: "Isabella Johnson",
         studentId: "S12356",
         email: "isabella@example.com",

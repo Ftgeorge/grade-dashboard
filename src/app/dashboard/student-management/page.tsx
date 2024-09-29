@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import DashboardLayout from "../page";
-import { FaBook } from "react-icons/fa6";
+import { FaBook, FaRegFileLines } from "react-icons/fa6";
 import { BiBlock, BiCheck, BiDownload } from "react-icons/bi";
 import { mockData, Student } from "@/app/components/mockData";
 
@@ -10,9 +10,29 @@ import { mockData, Student } from "@/app/components/mockData";
 
 
 
-const getStatusColor = (status: "blocked") => {
-    return status === "blocked" ? "text-green-500" : "text-red-500";
+const getStatusColor = (status: "Pending Review" | "Terminated" | "blocked" | "active" | "suspended" | "Resolved" | "Under Investigation" | "Under Review") => {
+    switch (status) {
+        case "Pending Review":
+            return "text-primary-yellow";
+        case "Terminated":
+            return "text-primary-red";
+        case "blocked":
+            return "text-primary-red";
+        case "active":
+            return "text-primary-green";
+        case "suspended":
+            return "text-primary-yellow";
+        case "Under Investigation":
+            return "text-primary-yellow";
+        case "Resolved":
+            return "text-primary-green";
+        case "Under Review":
+            return "text-primary-yellow"
+        default:
+            return "text-black";
+    }
 };
+
 
 export default function StudentManagement() {
     const [students, setStudents] = useState<Student[]>(mockData); // List of students
@@ -41,11 +61,11 @@ export default function StudentManagement() {
 
     return (
         <DashboardLayout>
-            <div className="p-4 rounded-xl bg-white border border-1 border-gray-200">
+            <div className="p-4 rounded-xl bg-white border border-1 h-[calc(100vh-105px)] overflow-y-auto border-gray-200">
                 <div className='w-full flex flex-row justify-between items-center mb-4'>
                     <h2 className="text-black font-semibold text-base">Student Records</h2>
                     <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                        <FaBook className='text-black text-2xl text-primary-80' />
+                        <FaRegFileLines className='text-black text-2xl text-primary-80' />
                     </div>
                 </div>
                 <div className="flex flex-row justify-between items-center gap-4 mb-4">
@@ -126,7 +146,7 @@ export default function StudentManagement() {
                                     <td className="py-2 text-gray-700 text-sm">{student.email}</td>
                                     <td className="py-2 text-gray-700 text-sm">{student.timestamp}</td>
                                     <td className="py-2 text-gray-700 text-sm">{student.offenseType}</td>
-                                    <td className={`py-2 text-sm`}>
+                                    <td className={`py-2 text-sm ${getStatusColor(student.status)}`}>
                                         {student.status}
                                     </td>
                                 </tr>
