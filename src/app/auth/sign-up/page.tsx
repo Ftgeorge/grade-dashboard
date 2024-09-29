@@ -30,8 +30,8 @@ export default function SignUp() {
                 <div className="border border-1 border-gray-200 rounded-lg p-8 py-10 gap-6 flex w-1/5 flex-col justify-start items-center">
                     <h1 className="text-[#1F3A93] font-normal text-center text-2xl">G<span className="text-black">rade</span></h1>
                     <div className="gap-1 flex-col flex">
-                        <h1 className="text-black  font-semibold text-center text-xl">Create an account</h1>
-                        <p className="text-gray-400 text-xs text-center">Get started with Grade and access exclusive features and content.</p>
+                        <h1 className="text-black font-semibold text-center text-xl">Create an account</h1>
+                        <p className="text-gray-400 font-normal text-xs text-center">Get started with Grade and access exclusive features and content.</p>
                     </div>
                     <div className="flex flex-col gap-3 w-full">
                         <input className="w-full h-10 bg-black rounded-lg text-xs px-4 border border-1 bg-gray-50" placeholder="Full Name" value={email} onChange={(e) => setEmail(e.target.value)} />
