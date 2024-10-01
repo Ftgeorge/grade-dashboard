@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardLayout from "../page";
 import { PiStudentFill } from "react-icons/pi";
 import { BsFillFileTextFill } from 'react-icons/bs';
@@ -138,10 +138,12 @@ export default function ReviewMalpractice() {
     const [selectedOffense, setSelectedOffense] = useState<number | null>(null);
     const [videoUrl, setVideoUrl] = useState<string>(''); // Change from null to empty string
 
+    const [isAnimating, setIsAnimating] = useState(false);
+
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'Pending Review':
-                return 'text-primary-yellow'; // Autumn color for pending
+                return isAnimating ? 'text-primary-dark-yellow' : 'text-primary-yellow'; // Use the darker shade when animating
             case 'Resolved':
                 return 'text-primary-green'; // Green for reviewed
             case 'Terminated':
@@ -150,6 +152,25 @@ export default function ReviewMalpractice() {
                 return '';
         }
     };
+
+    useEffect(() => {
+        const animateColorChange = () => {
+            setIsAnimating(true);
+            const interval = setInterval(() => {
+                setIsAnimating(prev => !prev);
+            }, 500);
+
+            return () => clearInterval(interval); // Cleanup on unmount
+        };
+
+        // Trigger the animation if any offense is pending review
+        const hasPendingReview = offenses.some(offense => offense.status === 'Pending Review');
+        if (hasPendingReview) {
+            animateColorChange();
+        } else {
+            setIsAnimating(false); // Reset animation if no pending reviews
+        }
+    }, [offenses]);
 
     const handleRowClick = (offense: { id: number; videoUrl: string }) => {
         // Toggle the selected row

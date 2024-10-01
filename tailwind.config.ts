@@ -16,6 +16,7 @@ const config: Config = {
         'primary-80': 'rgba(31, 58, 147, 0.8)',
         'primary-main': 'rgba(31, 58, 147, 0.1)',
         'primary-yellow':'rgba(255, 165, 0, 1)',
+        'primary-dark-yellow':'rgba(255, 140, 0, 1)',
         'primary-yellow-20':'rgba(255, 165, 0, 0.2)',
         'primary-green':'rgba(40, 167, 69, 1)',
         'primary-green-20':'rgba(40, 167, 69, 0.2)',
