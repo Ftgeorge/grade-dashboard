@@ -10,6 +10,8 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import AuthFooter from "@/app/components/constants/authFooter";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import Preloader from "../components/animation/preloader.animation";
+import PreloaderPage from "../components/animation/preloaderPage";
 
 interface MenuItem {
     label?: string;
@@ -34,6 +36,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const router = useRouter();
     const pathname = usePathname();
     const [selected, setSelected] = useState<string>('');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate a delay in loading
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000); // 2-second delay
+
+        return () => clearTimeout(timer); // Clean up the timer
+    }, []);
+
 
     useEffect(() => {
         const activeMenuItem = menuItems.find((item) => item.path && pathname.startsWith(item.path));
@@ -97,7 +110,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <div className="w-full mt-auto mb-5 flex flex-col justify-center items-center gap-10">
                     <div className="flex flex-col gap-2 items-center">
                         <div className="w-10 h-10 rounded-full bg-black">
-                            <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="h-full w-full rounded-full" alt=""/>
+                            <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="h-full w-full rounded-full" alt="" />
                         </div>
                         <div className="flex-col flex justify-center items-center">
                             <h1 className="text-black font-normal text-sm">Fabunmi George</h1>
@@ -119,7 +132,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </div>
                 </div>
                 <div className="p-5 px-16">
-                    {children}
+                    {loading ? <PreloaderPage /> : children}
                 </div>
             </div>
         </div>

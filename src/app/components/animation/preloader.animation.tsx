@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Preloader = () => {
     const letters = ['G', 'r', 'a', 'd', 'e'];
+    const [restartAnimation, setRestartAnimation] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRestartAnimation(prev => !prev); // Toggle between true/false to reset animation
+        }, 2000); // Restart every 2 seconds
+
+        return () => clearInterval(interval); // Clean up the interval on component unmount
+    }, []);
 
     return (
         <h1 className="text-2xl font-normal text-center font-medium">
