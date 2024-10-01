@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import DashboardLayout from "../page";
 import { IoPieChartOutline } from "react-icons/io5";
 import { Bar, Doughnut, Line, Pie } from 'react-chartjs-2';
@@ -27,7 +27,7 @@ interface AlertNotificationCardProps {
 }
 
 export default function DashHome() {
-    const barData = {
+    const barData = useMemo(() => ({
         labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // X-axis labels
         datasets: [
             {
@@ -49,9 +49,9 @@ export default function DashHome() {
                 barThickness: 25, // Make the bars thinner
             },
         ],
-    };
+    }), []);
 
-    const barOptions = {
+    const barOptions = useMemo(() => ({
         responsive: true,
         plugins: {
             legend: { display: false }, // Show legend
@@ -77,7 +77,7 @@ export default function DashHome() {
         },
         barThickness: 20, // Set the width of the bars
         barSpacing: 10, // Set the spacing between the bars
-    };
+    }), []);
 
 
 
@@ -91,7 +91,7 @@ export default function DashHome() {
     const averageInactiveStudents = totalInactiveStudents / numberOfWeeks;
 
     // Doughnut Chart Data
-    const doughnutData = {
+    const doughnutData = useMemo(() => ({
         labels: ['Currently Enrolled', 'Inactive Students'],
         datasets: [
             {
@@ -102,10 +102,10 @@ export default function DashHome() {
                 borderWidth: 2, // No border width to avoid gaps
             },
         ],
-    };
+    }), []);
 
     // Doughnut Chart Options
-    const doughnutOptions = {
+    const doughnutOptions = useMemo(() => ({
         responsive: true,
         cutout: '80%',
         elements: {
@@ -143,7 +143,7 @@ export default function DashHome() {
                 usePointStyle: true,  // <-- Use circles instead of rectangles
             },
         },
-    };
+    }), []);
 
     const [count, setCount] = useState(0);
     const totalExams = 260;
@@ -151,14 +151,19 @@ export default function DashHome() {
     useEffect(() => {
         let intervalId: any;
         const countUp = () => {
-            if (count < totalExams) {
-                setCount(count + 1);
-                intervalId = setTimeout(countUp, 10);
-            }
+            setCount(prevCount => {
+                if (prevCount < totalExams) {
+                    return prevCount + 1;
+                } else {
+                    clearTimeout(intervalId);
+                    return prevCount;
+                }
+            });
         };
-        countUp();
-        return () => clearTimeout(intervalId);
-    }, [totalExams, count]);
+
+        intervalId = setInterval(countUp, 10);
+        return () => clearInterval(intervalId);
+    }, []);
 
     // Dummy Alerts/Notifications Content
     const notifications = [
