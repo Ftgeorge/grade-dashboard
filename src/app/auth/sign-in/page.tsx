@@ -12,6 +12,9 @@ import AuthFooter from "@/app/components/constants/authFooter";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // For visibility toggle
 import Loader from "@/app/components/loader";
 import { IoAlertCircleOutline } from "react-icons/io5";
+import LogoText from "@/app/components/Text/LogoText";
+import PrimaryText from "@/app/components/Text/PrimaryText";
+import HeaderText from "@/app/components/Text/HeaderText";
 
 interface SignInProps { }
 
@@ -72,10 +75,10 @@ const SignIn: React.FC<SignInProps> = () => {
         <>
             <div className="bg-white w-full h-screen flex justify-center items-center">
                 <div className="border border-1 border-gray-200 rounded-lg p-8 py-10 gap-6 flex w-1/5 flex-col justify-start items-center">
-                    <h1 className="text-[#1F3A93] font-normal text-center text-2xl">G<span className="text-black">rade</span></h1>
                     <div className="gap-1 flex-col flex">
-                        <h1 className="text-black font-bold text-center text-xl">Log in to your account</h1>
-                        <h1 className="text-black font-normal text-center text-xs">Access your dashboard and start exploring</h1>
+                        <LogoText />
+                        <HeaderText placeholder="Log in to your account" />
+                        <PrimaryText placeholder="Access your dashboard and start exploring" className="text-xs" />
                     </div>
                     <div className="flex flex-col gap-3 w-full">
                         <div className="flex flex-col w-full">
@@ -115,12 +118,12 @@ const SignIn: React.FC<SignInProps> = () => {
                         </div>
 
                         <Link href={"/auth/forgot-password"}>
-                            <h1 className="text-[#1F3A93] font-medium text-xs">Forgot password?</h1>
+                            <h1 className="text-primary font-medium text-xs">Forgot password?</h1>
                         </Link>
                     </div>
                     <div className="flex flex-col gap-5 w-full">
                         <PrimaryButton
-                            className="bg-[#1F3A93] h-10 w-full flex justify-center items-center"
+                            className="bg-primary h-10 w-full flex justify-center items-center"
                             onClick={handleLogin}
                             disabled={loading}
                         >
@@ -153,14 +156,14 @@ const SignIn: React.FC<SignInProps> = () => {
                         <h1 className="text-black font-montserrat font-normal text-center text-xs">
                             Don't have an account yet?
                             <Link href="/auth/sign-up">
-                                <span className="text-[#1F3A93] font-medium"> Sign up</span>
+                                <span className="text-primary font-medium"> Sign up</span>
                             </Link>
                         </h1>
                         <div className="items-center justify-center w-full flex flex-col">
                             <div className="w-full justify-center items-center flex flex-col gap-8">
                                 <div className="flex flex-col w-full items-center justify-end">
-                                    <h1 className="text-gray-400 text-xs text-center">By signing up, you agree to our</h1>
-                                    <h1 className="text-[#1F3A93] text-xs text-center font-normal">
+                                    <PrimaryText placeholder="By signing up, you agree to our" className="text-gray-400 text-xs text-center"/>
+                                    <h1 className="text-primary text-xs text-center font-normal">
                                         Terms and Conditions <span className="text-gray-400"> and</span> Privacy Policy
                                     </h1>
                                 </div>

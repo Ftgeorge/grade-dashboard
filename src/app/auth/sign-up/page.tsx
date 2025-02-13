@@ -12,6 +12,9 @@ import AuthFooter from "@/app/components/constants/authFooter";
 import Link from "next/link";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import Loader from "@/app/components/loader";
+import LogoText from "@/app/components/Text/LogoText";
+import HeaderText from "@/app/components/Text/HeaderText";
+import PrimaryText from "@/app/components/Text/PrimaryText";
 
 export default function SignUp() {
     const router = useRouter();
@@ -71,10 +74,10 @@ export default function SignUp() {
         <>
             <div className="bg-white w-full h-screen flex justify-center items-center">
                 <div className="border border-1 border-gray-200 rounded-lg p-8 py-10 gap-6 flex w-1/5 flex-col justify-start items-center">
-                    <h1 className="text-[#1F3A93] font-normal text-center text-2xl">G<span className="text-black">rade</span></h1>
+                    <LogoText />
                     <div className="gap-1 flex-col flex">
-                        <h1 className="text-black font-semibold text-center text-xl">Create an account</h1>
-                        <p className="text-gray-400 font-normal text-xs text-center">Get started with Grade and access exclusive features and content.</p>
+                        <HeaderText placeholder="Create an account" />
+                        <PrimaryText placeholder="Get started with Grade and access exclusive features and content." className="text-gray-400" />
                     </div>
                     <div className="flex flex-col gap-3 w-full">
                         <input
