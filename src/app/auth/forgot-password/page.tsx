@@ -3,7 +3,7 @@
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import AuthFooter from "@/app/components/constants/authFooter";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";
 
@@ -34,7 +34,7 @@ const ForgetPassword: React.FC<ForgetPasswordProps> = () => {
                             <PrimaryButton children="Submit" className="bg-[#1F3A93] h-10 w-full" onClick={submitEmail} />
                         </div>
                     </div>
-                    <AuthFooter />
+                    <PoweredByLogo />
                     {error && <div className="text-red-500 text-xs">{error}</div>}
                 </div>
             </div>

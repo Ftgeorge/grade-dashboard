@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Heuvera from "../../images/heuvera.png";
-const AuthFooter = () => {
+const PoweredByLogo = () => {
     return (
         <div className="w-full justify-center items-center flex">
             <div className="w-full flex flex-col gap-1 justify-center items-center">
@@ -15,4 +15,4 @@ const AuthFooter = () => {
         </div>
     )
 }
-export default AuthFooter
+export default PoweredByLogo

@@ -7,7 +7,7 @@ import { FaUserGraduate } from "react-icons/fa";
 import { MdErrorOutline, MdSettings, MdOutlineSpaceDashboard } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import AuthFooter from "@/app/components/constants/authFooter";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Preloader from "../components/animation/preloader.animation";
@@ -117,7 +117,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             <h1 className="text-gray-500 text-xs">ftgeorgean@gmail.com</h1>
                         </div>
                     </div>
-                    <AuthFooter />
+                    <PoweredByLogo />
                 </div>
             </div>
             <div className="h-full w-full">

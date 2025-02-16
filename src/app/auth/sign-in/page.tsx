@@ -8,12 +8,12 @@ import facebook from "../../images/facebook.png";
 import twitter from "../../images/twitter.png";
 import { useState } from "react";
 import Link from "next/link";
-import AuthFooter from "@/app/components/constants/authFooter";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // For visibility toggle
 import Loader from "@/app/components/loader";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import LogoText from "@/app/components/Text/LogoText";
-import PrimaryText from "@/app/components/Text/PrimaryText";
+import PrimaryText from "@/app/components/Text/SubHeaderText";
 import HeaderText from "@/app/components/Text/HeaderText";
 
 interface SignInProps { }
@@ -167,7 +167,7 @@ const SignIn: React.FC<SignInProps> = () => {
                                         Terms and Conditions <span className="text-gray-400"> and</span> Privacy Policy
                                     </h1>
                                 </div>
-                                <AuthFooter />
+                                <PoweredByLogo />
                             </div>
                         </div>
                     </div>

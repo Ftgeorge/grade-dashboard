@@ -3,7 +3,7 @@
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import AuthFooter from "@/app/components/constants/authFooter";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import Loader from "@/app/components/loader";
 
 interface OtpProps {}
@@ -156,7 +156,7 @@ const Otp: React.FC<OtpProps> = () => {
                                 {loading ? <Loader loading={loading} /> : "Verify"}
                             </PrimaryButton>
                         </div>
-                        <AuthFooter />
+                        <PoweredByLogo />
                     </div>
                 </div>
             </div>

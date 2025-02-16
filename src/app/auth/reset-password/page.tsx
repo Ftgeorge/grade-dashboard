@@ -1,7 +1,7 @@
 "use client";
 
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
-import AuthFooter from "@/app/components/constants/authFooter";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -37,7 +37,7 @@ const NewPassword: React.FC<NewPasswordProps> = () => {
                     <div className="flex flex-col gap-5 w-full">
                         <PrimaryButton children="Submit" className="bg-[#1F3A93] h-10 w-full" onClick={handleSubmit} />
                     </div>
-                    <AuthFooter />
+                    <PoweredByLogo />
                     {error && <div className="text-red-500 text-xs">{error}</div>}
                 </div>
             </div>
