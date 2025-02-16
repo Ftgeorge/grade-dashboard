@@ -22,6 +22,7 @@ const config: Config = {
         'primary-green-20':'rgba(40, 167, 69, 0.2)',
         'primary-red-20': 'rgba(255, 69, 0, 00.2)',
         'primary-red': 'rgba(255, 69, 0, 1)',
+        grey:'#2D3748'
       },
       fontFamily: {
         montserrat: ['"Montserrat Alternates"', 'sans-serif'],

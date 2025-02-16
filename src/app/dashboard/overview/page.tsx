@@ -15,6 +15,9 @@ import { HiUsers } from 'react-icons/hi2';
 import { PiStudentFill } from 'react-icons/pi';
 import { FaClock } from 'react-icons/fa6';
 import RecentActivityLog from '@/app/components/card/recent-activity.card';
+import DashboardCard from '@/app/components/card/overview.card';
+import StudentActivityOverview from '@/app/components/Graphs/StudentActivityOverview';
+import SectionHeader from '@/app/components/constants/SectionHeader';
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, CategoryScale, LinearScale, BarElement, Title, LineElement, PointElement);
 
 interface AlertNotificationCardProps {
@@ -213,6 +216,33 @@ export default function DashHome() {
         { label: 'Notifications', count: notifications.length, value: 'notifications' },
     ];
 
+    const dashboardComponents = [
+        {
+            icon: FaBook,
+            count: 200,
+            label: "Total Exams Monitored",
+            borderColor: "border-primary-80",
+            bgColor: "bg-primary-20",
+            textColor: "text-primary-80",
+        },
+        {
+            icon: IoMdWarning,
+            count: 15,
+            label: "Flagged Offences",
+            borderColor: "border-primary-yellow",
+            bgColor: "bg-primary-yellow-20",
+            textColor: "text-primary-yellow",
+        },
+        {
+            icon: FaBook,
+            count: 170,
+            label: "Active Students",
+            borderColor: "border-primary-green",
+            bgColor: "bg-primary-green-20",
+            textColor: "text-primary-green",
+        },
+    ];
+
     return (
         <>
             <DashboardLayout>
@@ -220,58 +250,18 @@ export default function DashHome() {
                     <div className="w-full flex-row flex justify-evenly gap-5">
                         <div className='flex flex-col w-full gap-5'>
                             <div className='flex flex-row gap-5 justify-between w-full'>
-                                <div className='gap-5 flex-grow w-full bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
-                                    <div className='rounded-xl border border-1 border-primary-80 bg-primary-20 flex justify-center items-center w-12 h-12'>
-                                        <FaBook className="text-primary-80 text-2xl" />
-                                    </div>
-                                    <div className='flex flex-col gap-0'>
-                                        <h1 className='text-black font-medium text-2xl'>{count}</h1>
-                                        <h1 className='text-gray-700 font-normal text-base'>Total Exams monitored</h1>
-                                    </div>
-                                </div>
-                                <div className='gap-5 w-full flex-grow bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
-                                    <div className='rounded-xl border border-1 border-primary-yellow bg-primary-yellow-20 flex justify-center items-center w-12 h-12'>
-                                        <IoMdWarning className="text-primary-yellow text-2xl" />
-                                    </div>
-                                    <div className='flex flex-col gap-0'>
-                                        <h1 className='text-black font-medium text-2xl'>15</h1>
-                                        <h1 className='text-gray-700 font-normal text-base'>Flagged offences</h1>
-                                    </div>
-                                </div>
-                                <div className='gap-5 w-full flex-grow bg-white h-32 flex flex-row items-center justify-center border border-1 border-gray-200 rounded-xl p-5'>
-                                    <div className='rounded-xl border border-1 border-primary-green bg-primary-green-20 flex justify-center items-center w-12 h-12'>
-                                        <FaBook className="text-primary-green text-2xl" />
-                                    </div>
-                                    <div className='flex flex-col gap-0'>
-                                        <h1 className='text-black font-medium text-2xl'>170</h1>
-                                        <h1 className='text-gray-700 font-normal text-base'>Active Students</h1>
-                                    </div>
-                                </div>
+                                {dashboardComponents.map((item, index) => (
+                                    <DashboardCard key={index} {...item} />
+                                ))}
                             </div>
-                            <div className='w-full min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
-                                <div className='w-full flex flex-row justify-between items-center'>
-                                    <h1 className='text-black font-semibold text-base'>Student Activity Overview</h1>
-                                    <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                                        <PiStudentFill className='text-black text-2xl text-primary-80' />
-                                    </div>
-                                </div>
-                                <div className='flex flex-row gap-8 items-center justify-between mb-5'>
-                                    <div className='w-5/6 flex-grow h-72'>
-                                        <Bar data={barData} options={barOptions} /> {/* Render the bar chart */}
-                                    </div>
-                                    <div className='w-96 h-72 relative'>
-                                        <Doughnut data={doughnutData} options={doughnutOptions} />
-                                        <HiUsers className='absolute inset-0 m-auto text-gray-400 text-3xl translate-y-[-50%] translate-x-[-20%]' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-full min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
-                                <div className='w-full flex flex-row justify-between items-center'>
-                                    <h1 className='text-black font-semibold text-base'>Recent Activity Log</h1>
-                                    <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                                        <FaClock className='text-black text-2xl text-primary-80' />
-                                    </div>
-                                </div>
+                            <StudentActivityOverview
+                                barData={barData}
+                                barOptions={barOptions}
+                                doughnutData={doughnutData}
+                                doughnutOptions={doughnutOptions}
+                            />
+                            <div className='w-full flex-1 bg-white border border-1 border-gray-200 rounded-xl p-6 flex-col'>
+                                <SectionHeader title='Recent Activity Log' Icon={FaClock} />
                                 <div className='w-full flex flex-col'>
                                     {activityLog.map((log, index) => (
                                         <RecentActivityLog
@@ -284,12 +274,7 @@ export default function DashHome() {
                             </div>
                         </div>
                         <div className='bg-white min-h-fit w-full border border-1 border-gray-200 rounded-xl p-6 flex flex-col'>
-                            <div className='w-full flex flex-row justify-between items-center'>
-                                <h1 className='text-black text-base font-semibold'>Alerts/Notifications</h1>
-                                <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                                    <BiErrorCircle className='text-black text-2xl text-primary-80' />
-                                </div>
-                            </div>
+                            <SectionHeader title='Alerts/Notifications' Icon={BiErrorCircle} />
                             <div className='flex flex-row justify-evenly items-center mt-4 border border-1 border-gray-100 rounded-lg py-1 h-10'>
                                 {filterOptions.map((option, index) => (
                                     <FilterButton
@@ -301,7 +286,7 @@ export default function DashHome() {
                                     />
                                 ))}
                             </div>
-                            <div className='w-full py-4 overflow-y-auto max-h-[calc(100vh-260px)]'> {/* Keep the scrollable area within the limits */}
+                            <div className='w-full py-4 overflow-y-auto max-h-[calc(100vh-260px)]'>
                                 {filter === 'all' && (
                                     <>
                                         {/* Combine notifications and alerts */}
@@ -338,7 +323,6 @@ export default function DashHome() {
                                 ))}
                             </div>
                         </div>
-
                     </div>
                 </div>
             </DashboardLayout>

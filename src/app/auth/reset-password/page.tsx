@@ -2,6 +2,10 @@
 
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
 import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import InputField from "@/app/components/inputs/AuthInput";
+import HeaderText from "@/app/components/Text/HeaderText";
+import LogoText from "@/app/components/Text/LogoText";
+import SubHeaderText from "@/app/components/Text/SubHeaderText";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -25,17 +29,17 @@ const NewPassword: React.FC<NewPasswordProps> = () => {
         <>
             <div className="bg-white w-full h-screen flex justify-center items-center">
                 <div className="border border-1 border-gray-200 rounded-lg p-8 py-10 gap-6 flex w-1/5 flex-col justify-start items-center">
-                    <h1 className="text-[#1F3A93] font-normal text-center text-2xl">G<span className="text-black">rade</span></h1>
+                    <LogoText />
                     <div className="gap-1 flex-col flex">
-                        <h1 className="text-black font-custom font-semibold text-center text-xl">Create a new password</h1>
-                        <h1 className="text-black font-custom font-normal text-center text-xs">Please enter a new password to continue.</h1>
+                        <HeaderText placeholder="Create a new password" />
+                        <SubHeaderText placeholder="Please enter a new password to continue." />
                     </div>
                     <div className="flex flex-col gap-3 w-full">
-                        <input className="w-full h-10 bg-black rounded-lg text-xs px-4 border border-1 bg-gray-50" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <input className="w-full h-10 bg-black rounded-lg text-xs px-4 border border-1 bg-gray-50" placeholder="re-enter password" value={reEnterPassword} onChange={(e) => setReEnterPassword(e.target.value)} />
+                        <InputField placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} error={error} errorMessage="Enter your new password"/>
+                        <InputField placeholder="re-enter password" value={reEnterPassword} onChange={(e) => setReEnterPassword(e.target.value)} error={error} errorMessage="Re-enter your password"/>
                     </div>
                     <div className="flex flex-col gap-5 w-full">
-                        <PrimaryButton children="Submit" className="bg-[#1F3A93] h-10 w-full" onClick={handleSubmit} />
+                        <PrimaryButton children="Submit" className="bg-primary h-10 w-full" onClick={handleSubmit} />
                     </div>
                     <PoweredByLogo />
                     {error && <div className="text-red-500 text-xs">{error}</div>}
