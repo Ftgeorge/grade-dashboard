@@ -3,9 +3,10 @@
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import InputField from "@/app/components/inputs/AuthInput";
 
 interface ForgetPasswordProps {
     // Add any props types here
@@ -30,8 +31,10 @@ const ForgetPassword: React.FC<ForgetPasswordProps> = () => {
                     <div className="flex flex-col gap-4 w-full">
                         <HeaderText placeholder="Forgot Password" />
                         <div className="gap-6 flex flex-col">
-                            <input className="w-full h-10 bg-black rounded-lg text-xs px-4 border border-1 bg-gray-50" placeholder="email address or phone" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <PrimaryButton children="Submit" className="bg-[#1F3A93] h-10 w-full" onClick={submitEmail} />
+                            <InputField
+                                placeholder="email address or phone"
+                                value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <PrimaryButton children="Submit" className="bg-primary h-10 w-full" onClick={submitEmail} />
                         </div>
                     </div>
                     <PoweredByLogo />
