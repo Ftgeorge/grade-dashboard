@@ -2,7 +2,8 @@ import React from "react";
 
 interface FooterTextProps {
     className?: string;
-        placeholder: string | React.ReactNode;
+    placeholder: string | React.ReactNode;
+    onClick?: () => void
 }
 
 const FooterText: React.FC<FooterTextProps> = (

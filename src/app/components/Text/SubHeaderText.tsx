@@ -2,7 +2,8 @@ import React from "react";
 
 interface SubHeaderTextProps {
     className?: string;
-    placeholder: string;
+    placeholder: string | React.ReactNode;
+
 }
 
 const SubHeaderText: React.FC<SubHeaderTextProps> = (

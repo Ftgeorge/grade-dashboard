@@ -8,13 +8,16 @@ import facebook from "../../images/facebook.png";
 import twitter from "../../images/twitter.png";
 import { useState } from "react";
 import Link from "next/link";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // For visibility toggle
 import Loader from "@/app/components/loader";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import LogoText from "@/app/components/Text/LogoText";
 import PrimaryText from "@/app/components/Text/SubHeaderText";
 import HeaderText from "@/app/components/Text/HeaderText";
+import SubHeaderText from "@/app/components/Text/SubHeaderText";
+import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import FooterText from "@/app/components/Text/FooterText";
+import InputField from "@/app/components/inputs/AuthInput";
 
 interface SignInProps { }
 
@@ -70,6 +73,48 @@ const SignIn: React.FC<SignInProps> = () => {
     const handleOAuthLogin = (platform: string) => {
         console.log(`OAuth login with ${platform}`);
     };
+    const LoginInputFieldArrays = [
+        {
+            id: 1,
+            placeholder: "Email",
+            value: email,
+            onChange: (e: any) => setEmail(e.target.value),
+            error: emailError,
+            errorMessage: "Please enter a valid email.",
+        },
+        {
+            id: 2,
+            placeholder: "Password",
+            value: password,
+            type: showPassword ? "text" : "password",
+            onChange: (e: any) => setPassword(e.target.value),
+            error: passwordError,
+            errorMessage: "password is not correct.",
+            showIcon: true,
+            showPassword: true,
+            onClick: () => setShowPassword(!showPassword),
+        },
+    ];
+    const OauthSignInButtons = [
+        {
+            id: 1,
+            ImageSource: google,
+            imageClassname: "h-4 w-4",
+            onClick: () => handleOAuthLogin('google')
+        },
+        {
+            id: 2,
+            ImageSource: facebook,
+            imageClassname: "h-8 w-8",
+            onClick: () => handleOAuthLogin('facebook')
+        },
+        {
+            id: 3,
+            ImageSource: twitter,
+            imageClassname: "h-4 w-4",
+            onClick: () => handleOAuthLogin('twitter')
+        },
+    ];
 
     return (
         <>
@@ -78,47 +123,19 @@ const SignIn: React.FC<SignInProps> = () => {
                     <div className="gap-1 flex-col flex">
                         <LogoText />
                         <HeaderText placeholder="Log in to your account" />
-                        <PrimaryText placeholder="Access your dashboard and start exploring" className="text-xs" />
+                        <SubHeaderText placeholder="Access your dashboard and start exploring" />
                     </div>
                     <div className="flex flex-col gap-3 w-full">
-                        <div className="flex flex-col w-full">
-                            <input
-                                className={`w-full h-10 bg-black rounded-lg text-xs px-4 border border-1 bg-gray-50 ${emailError ? 'border-red-500' : ''}`}
-                                placeholder="Email address or phone"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {emailError && (
-                                <div className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                                    <IoAlertCircleOutline className="text-red-500" />
-                                    {emailError}
-                                </div>
-                            )}
+                    <div className="flex flex-col gap-3 w-full">
+                        <div className="flex flex-col gap-3 w-full">
+                            {LoginInputFieldArrays.map((input) => (
+                                <InputField key={input.id} {...input} />
+                            ))}
                         </div>
-                        <div className="relative w-full flex flex-col">
-                            <input
-                                className={`w-full h-10 bg-black rounded-lg text-xs px-4 pr-10 border border-1 bg-gray-50 ${passwordError ? 'border-red-500' : ''}`}
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <div
-                                className="absolute right-0 flex items-center justify-center h-10 px-3 cursor-pointer"
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? <FaEyeSlash className="text-gray-300" /> : <FaEye className="text-gray-300" />}
-                            </div>
-                            {passwordError && (
-                                <div className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                                    <IoAlertCircleOutline className="text-red-500" />
-                                    {passwordError}
-                                </div>
-                            )}
-                        </div>
+                    </div>
 
                         <Link href={"/auth/forgot-password"}>
-                            <h1 className="text-primary font-medium text-xs">Forgot password?</h1>
+                            <FooterText placeholder="Forgot password?" className="text-primary font-medium text-right" />
                         </Link>
                     </div>
                     <div className="flex flex-col gap-5 w-full">
@@ -135,37 +152,26 @@ const SignIn: React.FC<SignInProps> = () => {
                             <div className="h-0.5 w-full bg-gray-100" />
                         </div>
                         <div className="w-full flex flex-row justify-between items-center gap-5">
-                            <OauthButton
-                                ImageSource={google}
-                                imageClassname="h-4 w-4"
-                                onClick={() => handleOAuthLogin("google")}
-                            />
-                            <OauthButton
-                                ImageSource={facebook}
-                                imageClassname="h-8 w-8"
-                                onClick={() => handleOAuthLogin("facebook")}
-                            />
-                            <OauthButton
-                                ImageSource={twitter}
-                                imageClassname="h-4 w-4"
-                                onClick={() => handleOAuthLogin("twitter")}
-                            />
+                            {OauthSignInButtons.map((input) => (
+                                <OauthButton key={input.id} {...input} />
+                            ))}
                         </div>
                     </div>
                     <div className="flex flex-col w-full items-center justify-end gap-5">
-                        <h1 className="text-black font-montserrat font-normal text-center text-xs">
-                            Don't have an account yet?
-                            <Link href="/auth/sign-up">
-                                <span className="text-primary font-medium"> Sign up</span>
-                            </Link>
-                        </h1>
+                        <FooterText
+                            placeholder={
+                                <>
+                                    Don't have an account yet? <Link href="/auth/sign-up">
+                                        <span className="text-primary font-medium"> Sign up</span>
+                                    </Link>
+                                </>
+                            }
+                        />
                         <div className="items-center justify-center w-full flex flex-col">
                             <div className="w-full justify-center items-center flex flex-col gap-8">
                                 <div className="flex flex-col w-full items-center justify-end">
-                                    <PrimaryText placeholder="By signing up, you agree to our" className="text-gray-400 text-xs text-center"/>
-                                    <h1 className="text-primary text-xs text-center font-normal">
-                                        Terms and Conditions <span className="text-gray-400"> and</span> Privacy Policy
-                                    </h1>
+                                    <FooterText placeholder="By signing up, you agree to our" />
+                                    <FooterText placeholder={<> Terms and Conditions <span className="text-gray-400"> and</span> Privacy Policy </>} className="text-primary font-medium" />
                                 </div>
                                 <PoweredByLogo />
                             </div>

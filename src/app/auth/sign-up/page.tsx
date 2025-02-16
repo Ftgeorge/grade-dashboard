@@ -7,13 +7,10 @@ import google from "../../images/google.png";
 import facebook from "../../images/facebook.png";
 import twitter from "../../images/twitter.png";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
-import { IoAlertCircleOutline } from "react-icons/io5";
 import Loader from "@/app/components/loader";
 import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";
-import PrimaryText from "@/app/components/Text/SubHeaderText";
 import InputField from "@/app/components/inputs/AuthInput";
 import SubHeaderText from "@/app/components/Text/SubHeaderText";
 import FooterText from "@/app/components/Text/FooterText";
@@ -73,7 +70,7 @@ export default function SignUp() {
         console.log(`OAuth Signup with ${platform}`);
     }
 
-    const InputFieldArrays = [
+    const SignupInputFieldArrays = [
         {
             id: 1,
             placeholder: "Full Name",
@@ -124,7 +121,7 @@ export default function SignUp() {
         }
     ];
 
-    const OauthButtons = [
+    const OauthSignupButtons = [
         {
             id: 1,
             ImageSource: google,
@@ -157,7 +154,7 @@ export default function SignUp() {
                     </div>
                     <div className="flex flex-col gap-3 w-full">
                         <div className="flex flex-col gap-3 w-full">
-                            {InputFieldArrays.map((input) => (
+                            {SignupInputFieldArrays.map((input) => (
                                 <InputField key={input.id} {...input} />
                             ))}
                         </div>
@@ -168,7 +165,7 @@ export default function SignUp() {
                             onClick={handleSignup}
                             disabled={loading}
                         >
-                            {loading ? <Loader loading={loading} /> : "Login"}
+                            {loading ? <Loader loading={loading} /> : "Signup"}
                         </PrimaryButton>
                         <div className="flex flex-row w-full justify-evenly items-center gap-3">
                             <div className="h-0.5 w-full bg-gray-100" />
@@ -176,7 +173,7 @@ export default function SignUp() {
                             <div className="h-0.5 w-full bg-gray-100" />
                         </div>
                         <div className="w-full flex flex-row justify-between items-center gap-5">
-                            {OauthButtons.map((input) => (
+                            {OauthSignupButtons.map((input) => (
                                 <OauthButton key={input.id} {...input} />
                             ))}
                         </div>
