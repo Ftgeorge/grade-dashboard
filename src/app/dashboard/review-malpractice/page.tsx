@@ -8,6 +8,11 @@ import { AiOutlineExclamationCircle, AiOutlineFileText } from 'react-icons/ai';
 import { BsCameraVideoFill } from 'react-icons/bs';
 import { FaRegClipboard, FaVideo } from "react-icons/fa6";
 import { LiaClipboardListSolid } from "react-icons/lia";
+import SectionHeader from "@/app/components/constants/SectionHeader";
+import TableHeaderText from "@/app/components/Table/TableHeaderText";
+import TableContentForm from "@/app/components/Table/TableContentForm";
+import OffenseDetailForm from "@/app/components/Forms/OffenseDetailForm";
+import ActionButton from "@/app/components/buttons/ActionButton";
 
 
 const offenses = [
@@ -199,27 +204,62 @@ export default function ReviewMalpractice() {
         // Implement the logic for termination here
     };
 
+    const TableHeaders = [
+        {
+            headerText: "Profile"
+        },
+        {
+
+            headerText: "Student Name"
+        },
+        {
+
+            headerText: "Student ID"
+        },
+        {
+
+            headerText: "Timestamp"
+        },
+        {
+
+            headerText: "Type of Offense"
+        },
+        {
+
+            headerText: "Status"
+        },
+    ];
+
+    const IncidentDecisionButtons = [
+        {
+            placeholder: 'Mark as Reviewed',
+            color: "bg-primary-green-20 text-primary-green border-primary-green",
+            onClick: { handleMarkAsViewed }
+        },
+        {
+            placeholder: 'Block Student',
+            color: "border-primary-red bg-primary-red-20 text-primary-red",
+            onClick: { handleBlockStudent }
+        },
+        {
+            placeholder: 'Escalate to Further Action',
+            color: "bg-primary-yellow-20 text-primary-yellow border-primary-yellow",
+            onClick: { handleEscalate }
+        }
+    ]
+
     return (
         <DashboardLayout>
             <div className="w-full flex flex-row gap-5 h-[calc(100vh-105px)] overflow-y-auto">
                 {/* Table Section */}
                 <div className="bg-white border border-1 border-gray-200 rounded-xl w-3/4 p-5">
-                    <div className='w-full flex flex-row justify-between items-center'>
-                        <h2 className="text-black font-semibold text-base mb-4">Offense Records</h2>
-                        <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                            <LiaClipboardListSolid className='text-black text-2xl text-primary-80' />
-                        </div>
-                    </div>
-
+                    <SectionHeader title="Offense Records" Icon={LiaClipboardListSolid} />
                     <table className="min-w-full table-auto overflow-y-auto">
                         <thead>
                             <tr className="text-left bg-white">
-                                <th className="py-2 text-gray-400 font-medium text-xs">Profile</th>
-                                <th className="py-2 text-gray-400 font-medium text-xs">Student Name</th>
-                                <th className="py-2 text-gray-400 font-medium text-xs">Student ID</th>
-                                <th className="py-2 text-gray-400 font-medium text-xs">Timestamp</th>
-                                <th className="py-2 text-gray-400 font-medium text-xs">Type of Offense</th>
-                                <th className="py-2 text-gray-400 font-medium text-xs">Status</th>
+                                {TableHeaders.map((headerText) => (
+                                    <TableHeaderText placeholder={headerText.headerText} />
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
@@ -230,20 +270,15 @@ export default function ReviewMalpractice() {
                                         } hover:bg-gray-100`}
                                     onClick={() => handleRowClick(offense)}
                                 >
-                                    <td className="px-4 py-2">
-                                        <img
-                                            src={offense.profileImage}
-                                            alt={`${offense.studentName} profile`}
-                                            className="w-10 h-10 rounded-full"
-                                        />
-                                    </td>
-                                    <td className="py-2 text-gray-700 text-sm">{offense.studentName}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{offense.studentId}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{offense.timestamp}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{offense.offenseType}</td>
-                                    <td className={`py-2 text-sm ${getStatusColor(offense.status)}`}>
-                                        {offense.status}
-                                    </td>
+                                    <TableContentForm
+                                        profileImage={offense.profileImage}
+                                        studentName={offense.studentName}
+                                        studentId={offense.studentId}
+                                        timestamp={offense.timestamp}
+                                        offenseType={offense.offenseType}
+                                        color={getStatusColor(offense.status)}
+                                        status={offense.status}
+                                    />
                                 </tr>
                             ))}
                         </tbody>
@@ -251,18 +286,14 @@ export default function ReviewMalpractice() {
                 </div>
 
                 {/* Selected Offense Details Section */}
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 flex-1">
                     {/* Selected Offense Video Playback */}
                     <div className="w-full flex flex-col min-h-fit bg-white border border-1 border-gray-200 rounded-xl p-4">
-                        <div className='w-full flex flex-row justify-between items-center'>
-                            <h2 className="text-black font-semibold text-base mb-4">Recorded Violations</h2>
-                            <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                                <FaVideo className='text-black text-2xl text-primary-80' />
-                            </div>
-                        </div>
+
+                        <SectionHeader title="Recorded Violations" Icon={FaVideo} />
 
                         {/* Video Player with proper fit */}
-                        <div className="w-full h-60 mt-4 rounded-xl overflow-hidden flex justify-center items-center">
+                        <div className="w-full h-52 mt-4 rounded-xl overflow-hidden flex justify-center items-center">
                             {selectedOffense ? (
                                 <video
                                     controls
@@ -279,34 +310,19 @@ export default function ReviewMalpractice() {
 
                     {/* Action Buttons Section */}
                     <div className="w-full flex-grow bg-white border border-1 border-gray-200 rounded-xl p-4 flex flex-col">
-                        <div className='w-full flex flex-row justify-between items-center'>
-                            <h2 className="text-black font-semibold text-base mb-4">Incident Decision</h2>
-                            <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                                <AiOutlineExclamationCircle className='text-black text-2xl text-primary-80' />
-                            </div>
-                        </div>
-
+                        <SectionHeader title="Incident Decision" Icon={AiOutlineExclamationCircle} />
                         <div className="flex justify-between flex-col mt-4 flex-grow">
                             {offenses.filter((offense) => offense.id === selectedOffense).map((offense, index) => (
-                                <div key={index} className="w-full flex flex-row gap-5 mb-4">
-                                    {/* Profile Image */}
-                                    <img
-                                        src={offense.profileImage}
-                                        alt={offense.studentName}
-                                        className="rounded-lg h-40 w-40 object-cover"
-                                    />
-
-                                    {/* Offense Details */}
-                                    <div className="flex flex-col justify-start gap-2">
-                                        <h1 className="text-gray-900 font-medium text-base">{offense.studentName}</h1>
-                                        <h1 className="text-gray-700 font-medium text-sm">ID: {offense.studentId}</h1>
-                                        <h1 className="text-gray-600 font-medium text-sm">Offense: {offense.offenseType}</h1>
-                                        <h1 className={`font-medium text-sm ${getStatusColor(offense.status)}`}><span className="text-gray-600">Status:</span> {offense.status}</h1>
-                                        <h1 className="text-gray-500 font-medium text-sm">
-                                            {new Date(offense.timestamp).toLocaleString()}
-                                        </h1>
-                                    </div>
-                                </div>
+                                <OffenseDetailForm
+                                    offenseType={offense.offenseType}
+                                    profileImage={offense.profileImage}
+                                    color={getStatusColor(offense.status)}
+                                    timestamp={offense.timestamp}
+                                    studentId={offense.studentId}
+                                    studentName={offense.studentName}
+                                    status={offense.status}
+                                    index={index}
+                                />
                             ))}
                         </div>
 
@@ -314,24 +330,14 @@ export default function ReviewMalpractice() {
                         {offenses.filter((offense) => offense.id === selectedOffense).map((offense, index) => (
                             offense.status === 'Pending Review' && (
                                 <div key={index} className="flex flex-col w-full space-y-3">
-                                    <button
-                                        onClick={handleMarkAsViewed}
-                                        className="h-14 rounded-lg border border-1 bg-primary-green-20 text-primary-green border-primary-green"
-                                    >
-                                        Mark as Reviewed
-                                    </button>
-                                    <button
-                                        onClick={handleBlockStudent}
-                                        className="text-white h-14 rounded-lg border border-1 border-primary-red bg-primary-red-20 text-primary-red"
-                                    >
-                                        Block Student
-                                    </button>
-                                    <button
-                                        onClick={handleEscalate}
-                                        className="h-14 rounded-lg border border-1 bg-primary-yellow-20 text-primary-yellow border-primary-yellow"
-                                    >
-                                        Escalate to Further Action
-                                    </button>
+                                    {IncidentDecisionButtons.map((buttons) => (
+                                        <ActionButton
+                                            onClick={() => { }}
+                                            className={`${buttons.color}`}
+                                        >
+                                            {buttons.placeholder}
+                                        </ActionButton>
+                                    ))}
                                 </div>
                             )
                         ))}
