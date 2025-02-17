@@ -5,6 +5,11 @@ import DashboardLayout from "../page";
 import { FaBook, FaRegFileLines } from "react-icons/fa6";
 import { BiBlock, BiCheck, BiDownload } from "react-icons/bi";
 import { mockData, Student } from "@/app/components/mockData";
+import SectionHeader from "@/app/components/constants/SectionHeader";
+import SearchBar from "@/app/components/Search/searchBar";
+import ActionButton from "@/app/components/buttons/ActionButton";
+import TableHeaderText from "@/app/components/Table/TableHeaderText";
+import TableContentForm from "@/app/components/Table/TableContentForm";
 
 
 
@@ -59,48 +64,67 @@ export default function StudentManagement() {
         student.studentName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const BulkActionsButtons = [
+        {
+            placeholder: 'Block Selected',
+            color: "border-primary-red bg-primary-red-20 text-primary-red",
+            onClick: () => setStudents(students.map((student) => selectedStudents.includes(student.id) ? { ...student, status: 'blocked' } : student)),
+            icon: BiBlock
+        },
+        {
+            placeholder: 'Unblock Selected',
+            color: "bg-primary-green-20 text-primary-green border-primary-green",
+            onClick: () => setStudents(students.map((student) => selectedStudents.includes(student.id) ? { ...student, status: 'active' } : student)),
+            icon: BiCheck
+        },
+        {
+            placeholder: 'Download CSV',
+            color: "bg-primary-20 text-primary border-primary",
+            onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                handleDownloadCSV();
+            },
+            icon: BiDownload
+        }
+    ];
+
+    const StudentManagementHeaders = [
+        { headerText: "Select" },
+        { headerText: "Profile" },
+        { headerText: "Student Name" },
+        { headerText: "Student ID" },
+        { headerText: "email" },
+        { headerText: "Timestamp" },
+        { headerText: "Type of Offense" },
+        { headerText: "Status" },
+    ];
+
     return (
         <DashboardLayout>
             <div className="p-4 rounded-xl bg-white border border-1 h-[calc(100vh-105px)] overflow-y-auto border-gray-200">
-                <div className='w-full flex flex-row justify-between items-center mb-4'>
-                    <h2 className="text-black font-semibold text-base">Student Records</h2>
-                    <div className='rounded-xl bg-primary-20 flex justify-center items-center w-12 h-12 border border-1 border-[#1F3A93]'>
-                        <FaRegFileLines className='text-black text-2xl text-primary-80' />
-                    </div>
-                </div>
-                <div className="flex flex-row justify-between items-center gap-4 mb-4">
+                <SectionHeader
+                    title="Student Records"
+                    Icon={FaRegFileLines}
+                />
+                <div className="flex flex-row justify-between items-center gap-4 my-4">
                     {/* Search Bar */}
-                    <input
-                        type="text"
-                        placeholder="Search students..."
+                    <SearchBar
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="p-2 px-4 flex-grow border border-gray-300 rounded-lg h-12"
                     />
 
                     {/* Bulk Actions */}
                     <div className="flex-row flex gap-4">
-                        <button
-                            className="bg-primary-red-20 border border-1 border-primary-red text-primary-red h-12 px-3 rounded-lg flex flex-row gap-2 items-center justify-center"
-                            onClick={() => setStudents(students.map((student) => selectedStudents.includes(student.id) ? { ...student, status: 'blocked' } : student))}
-                        >
-                            Block Selected
-                            <BiBlock className="text-xl" />
-                        </button>
-                        <button
-                            className="bg-primary-green-20 border border-1 border-primary-green text-primary-green h-12 px-3 rounded-lg flex flex-row gap-2 items-center justify-center"
-                            onClick={() => setStudents(students.map((student) => selectedStudents.includes(student.id) ? { ...student, status: 'active' } : student))}
-                        >
-                            Unblock Selected
-                            <BiCheck className="text-xl" />
-                        </button>
-                        <button
-                            className="bg-primary-20 border border-1 border-primary text-primary h-12 px-3 rounded-lg flex flex-row gap-2 items-center justify-center"
-                            onClick={handleDownloadCSV}
-                        >
-                            Download CSV
-                            <BiDownload className="text-xl" />
-                        </button>
+                        {BulkActionsButtons.map((buttons, index) => (
+                            <ActionButton
+                                key={index}
+                                className={`${buttons.color}`}
+                                onClick={buttons.onClick}
+                            >
+                                {buttons.placeholder}
+                                {buttons.icon && <buttons.icon className="text-xl" />}
+                            </ActionButton>
+                        ))}
                     </div>
                 </div>
 
@@ -108,14 +132,9 @@ export default function StudentManagement() {
                 <table className="min-w-full table-auto overflow-y-auto">
                     <thead>
                         <tr className="text-left bg-white">
-                            <th className="py-2 text-gray-400 font-medium text-xs">Select</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Profile</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Student Name</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Student ID</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Email</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Timestamp</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Type of Offense</th>
-                            <th className="py-2 text-gray-400 font-medium text-xs">Status</th>
+                            {StudentManagementHeaders.map((HeaderText, index) => (
+                                <TableHeaderText key={index} placeholder={HeaderText.headerText} />
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
@@ -134,21 +153,16 @@ export default function StudentManagement() {
                                             onChange={() => handleCheckboxChange(student.id)}
                                         />
                                     </td>
-                                    <td className="px-4 py-2">
-                                        <img
-                                            src={student.profileImage}
-                                            alt={`${student.studentName} profile`}
-                                            className="w-10 h-10 rounded-full"
-                                        />
-                                    </td>
-                                    <td className="py-2 text-gray-700 text-sm">{student.studentName}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{student.studentId}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{student.email}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{student.timestamp}</td>
-                                    <td className="py-2 text-gray-700 text-sm">{student.offenseType}</td>
-                                    <td className={`py-2 text-sm ${getStatusColor(student.status)}`}>
-                                        {student.status}
-                                    </td>
+                                    <TableContentForm
+                                        profileImage={student.profileImage}
+                                        studentName={student.studentName}
+                                        studentId={student.studentId}
+                                        email={student.email}
+                                        timestamp={student.timestamp}
+                                        offenseType={student.offenseType}
+                                        color={getStatusColor(student.status)}
+                                        status={student.status}
+                                    />
                                 </tr>
 
                                 {/* Expanded Row Details */}

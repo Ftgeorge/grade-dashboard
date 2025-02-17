@@ -150,27 +150,28 @@ export default function Reports() {
   return (
     <>
       <DashboardLayout>
-        <h2 className="text-xl font-semibold mb-4">Analytics Dashboard</h2>
+      <h2 className="text-xl font-semibold mb-4">Analytics Dashboard</h2>
+        {/* 
 
-        {/* Radar Chart */}
+        {/* Radar Chart *
         <div className="chart-container mb-6">
           <h3 className="text-lg font-semibold mb-2">Offenses by Department</h3>
           <Radar data={radarData} options={radarOptions} />
         </div>
 
-        {/* Bar Chart */}
+        {/* Bar Chart 
         <div className="chart-container mb-6">
           <h3 className="text-lg font-semibold mb-2">Offenses Over Time</h3>
           <Bar data={barData} options={barOptions} />
         </div>
 
-        {/* Pie Chart */}
+        {/* Pie Chart 
         <div className="chart-container mb-6">
           <h3 className="text-lg font-semibold mb-2">Types of Offenses</h3>
           <Pie data={pieData} options={pieOptions} />
         </div>
 
-        {/* Downloadable Reports */}
+        {/* Downloadable Reports 
         <h3 className="text-lg font-semibold mb-2">Downloadable Reports</h3>
         <p>You can export the data as CSV or PDF:</p>
         <button
@@ -184,7 +185,7 @@ export default function Reports() {
           onClick={() => downloadReport("pdf")}
         >
           Download PDF
-        </button>
+        </button> */}
       </DashboardLayout>
     </>
   );

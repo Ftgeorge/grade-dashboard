@@ -8,6 +8,7 @@ interface TableContentFormProps {
     offenseType: string;
     color: string;
     status: string;
+    email?: string;
 
 }
 
@@ -18,7 +19,8 @@ const TableContentForm: React.FC<TableContentFormProps> = ({
     timestamp,
     offenseType,
     color,
-    status
+    status,
+    email
 }) => {
     return (
         <>
@@ -31,6 +33,7 @@ const TableContentForm: React.FC<TableContentFormProps> = ({
             </td>
             <td className="py-2 text-gray-700 text-sm">{studentName}</td>
             <td className="py-2 text-gray-700 text-sm">{studentId}</td>
+            <td className="py-2 text-gray-700 text-sm">{email}</td>
             <td className="py-2 text-gray-700 text-sm">{timestamp}</td>
             <td className="py-2 text-gray-700 text-sm">{offenseType}</td>
             <td className={`py-2 text-sm ${color}`}>

@@ -204,7 +204,7 @@ export default function ReviewMalpractice() {
         // Implement the logic for termination here
     };
 
-    const TableHeaders = [
+    const ReviewMalpracticeHeaders = [
         {
             headerText: "Profile"
         },
@@ -257,7 +257,7 @@ export default function ReviewMalpractice() {
                     <table className="min-w-full table-auto overflow-y-auto">
                         <thead>
                             <tr className="text-left bg-white">
-                                {TableHeaders.map((headerText) => (
+                                {ReviewMalpracticeHeaders.map((headerText) => (
                                     <TableHeaderText placeholder={headerText.headerText} />
                                 ))}
                             </tr>

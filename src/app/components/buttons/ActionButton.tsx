@@ -13,7 +13,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 }) => {
     return (
         <button
-            className={`font-normal rounded-lg h-14 rounded-lg border border-1 ${className}`}
+            className={`font-normal rounded-lg h-12 rounded-lg border border-1 px-4 flex flex-row gap-2 items-center justify-center ${className}`}
             onClick={onClick}
         >
             {children}
