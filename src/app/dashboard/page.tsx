@@ -11,7 +11,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Preloader from "../components/animation/preloader.animation";
 import PreloaderPage from "../components/animation/preloaderPage";
-import PoweredByLogo from "../components/constants/PoweredByLogo";
+import PoweredByLogo from "../constants/PoweredByLogo";
 import PrimaryText from "../components/Text/PrimaryText";
 
 interface MenuItem {

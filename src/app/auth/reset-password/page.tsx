@@ -1,7 +1,7 @@
 "use client";
 
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import PoweredByLogo from "@/app/constants/PoweredByLogo";
 import InputField from "@/app/components/inputs/AuthInput";
 import HeaderText from "@/app/components/Text/HeaderText";
 import LogoText from "@/app/components/Text/LogoText";

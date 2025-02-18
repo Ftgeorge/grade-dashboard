@@ -5,7 +5,7 @@ interface OauthButtonProps {
     imageClassname?: string;
     onClick: () => void;
     className?: string;
-    ImageSource: StaticImageData;
+    ImageSource: StaticImageData | string;
 }
 
 const OauthButton: React.FC<OauthButtonProps> = ({

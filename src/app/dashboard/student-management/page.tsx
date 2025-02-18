@@ -5,7 +5,7 @@ import DashboardLayout from "../page";
 import { FaBook, FaRegFileLines } from "react-icons/fa6";
 import { BiBlock, BiCheck, BiDownload } from "react-icons/bi";
 import { mockData, Student } from "@/app/components/mockData";
-import SectionHeader from "@/app/components/constants/SectionHeader";
+import SectionHeader from "@/app/constants/SectionHeader";
 import SearchBar from "@/app/components/Search/searchBar";
 import ActionButton from "@/app/components/buttons/ActionButton";
 import TableHeaderText from "@/app/components/Table/TableHeaderText";

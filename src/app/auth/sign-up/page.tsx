@@ -14,7 +14,7 @@ import HeaderText from "@/app/components/Text/HeaderText";
 import InputField from "@/app/components/inputs/AuthInput";
 import SubHeaderText from "@/app/components/Text/SubHeaderText";
 import FooterText from "@/app/components/Text/FooterText";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import PoweredByLogo from "@/app/constants/PoweredByLogo";
 
 export default function SignUp() {
     const router = useRouter();

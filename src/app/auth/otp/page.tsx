@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import Loader from "@/app/components/loader";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import PoweredByLogo from "@/app/constants/PoweredByLogo";
 import FooterText from "@/app/components/Text/FooterText";
 import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";

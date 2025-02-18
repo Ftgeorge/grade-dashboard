@@ -3,7 +3,7 @@ import { Bar, Doughnut } from "react-chartjs-2";
 import { PiStudentFill } from "react-icons/pi";
 import { HiUsers } from "react-icons/hi";
 import { ChartData, ChartOptions } from "chart.js";
-import SectionHeader from "../constants/SectionHeader";
+import SectionHeader from "../../constants/SectionHeader";
 
 type StudentActivityProps = {
     barData: ChartData<"bar">;

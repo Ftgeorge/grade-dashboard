@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
+import PoweredByLogo from "@/app/constants/PoweredByLogo";
 import InputField from "@/app/components/inputs/AuthInput";
 
 interface ForgetPasswordProps {

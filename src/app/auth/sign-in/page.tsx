@@ -15,9 +15,9 @@ import LogoText from "@/app/components/Text/LogoText";
 import PrimaryText from "@/app/components/Text/SubHeaderText";
 import HeaderText from "@/app/components/Text/HeaderText";
 import SubHeaderText from "@/app/components/Text/SubHeaderText";
-import PoweredByLogo from "@/app/components/constants/PoweredByLogo";
 import FooterText from "@/app/components/Text/FooterText";
 import InputField from "@/app/components/inputs/AuthInput";
+import PoweredByLogo from "@/app/constants/PoweredByLogo";
 
 interface SignInProps { }
 

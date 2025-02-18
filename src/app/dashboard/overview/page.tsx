@@ -17,7 +17,7 @@ import { FaClock } from 'react-icons/fa6';
 import RecentActivityLog from '@/app/components/card/recent-activity.card';
 import DashboardCard from '@/app/components/card/overview.card';
 import StudentActivityOverview from '@/app/components/Graphs/StudentActivityOverview';
-import SectionHeader from '@/app/components/constants/SectionHeader';
+import SectionHeader from '@/app/constants/SectionHeader';
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, CategoryScale, LinearScale, BarElement, Title, LineElement, PointElement);
 
 interface AlertNotificationCardProps {

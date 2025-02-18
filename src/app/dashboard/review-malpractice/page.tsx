@@ -8,7 +8,7 @@ import { AiOutlineExclamationCircle, AiOutlineFileText } from 'react-icons/ai';
 import { BsCameraVideoFill } from 'react-icons/bs';
 import { FaRegClipboard, FaVideo } from "react-icons/fa6";
 import { LiaClipboardListSolid } from "react-icons/lia";
-import SectionHeader from "@/app/components/constants/SectionHeader";
+import SectionHeader from "@/app/constants/SectionHeader";
 import TableHeaderText from "@/app/components/Table/TableHeaderText";
 import TableContentForm from "@/app/components/Table/TableContentForm";
 import OffenseDetailForm from "@/app/components/Forms/OffenseDetailForm";
