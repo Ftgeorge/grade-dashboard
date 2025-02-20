@@ -1,10 +1,6 @@
+import { FilterButtonProps } from '@/app/data/list';
 import React from 'react';
 
-interface FilterButtonProps extends React.ComponentProps<'button'> {
-    label: string;
-    count: number;
-    active: boolean;
-}
 
 const FilterButton = ({ label, count, active, ...props }: FilterButtonProps) => {
     return (

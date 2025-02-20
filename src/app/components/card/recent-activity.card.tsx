@@ -1,10 +1,8 @@
 import React from 'react';
 import AlertNotificationCard from './alert-notification.card';
+import { RecentActivityLogProps } from '@/app/data/list';
 
-interface RecentActivityLogProps {
-    message: string;
-    time: string;
-}
+
 
 const RecentActivityLog: React.FC<RecentActivityLogProps> = ({ message, time }) => {
     return (

@@ -1,30 +1,7 @@
 // mockData.ts
 
-// Define the structure of the Student type
-export interface Student {
-    id: number;
-    profileImage: string;
-    studentName: string;
-    studentId: string;
-    email: string;
-    timestamp: string;
-    offenseType: string;
-    status: "Pending Review" | "Terminated" | "blocked" | "active" | "suspended" | "Resolved" | "Under Investigation" | "Under Review";
-    subjectHistory: {
-        subject: string;
-        score: string;
-        date: string;
-    }[];
-    actionHistory: {
-        description: string;
-        date: string;
-    }[];
-    dateOfBirth?: string;
-    phoneNumber?: string;
-}
+import { Student } from "../data/list";
 
-
-// Create the updated mock data array
 export const mockData: Student[] = [
     {
         id: 1,

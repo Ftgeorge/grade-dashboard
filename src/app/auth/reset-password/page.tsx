@@ -8,11 +8,10 @@ import LogoText from "@/app/components/Text/LogoText";
 import SubHeaderText from "@/app/components/Text/SubHeaderText";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { NewPasswordProps } from "@/app/data/list";
 
 
-interface NewPasswordProps {
-    // Add any props types here
-}
+
 
 const NewPassword: React.FC<NewPasswordProps> = () => {
     const router = useRouter();

@@ -2,11 +2,10 @@
 
 import OauthButton from "@/app/components/buttons/OauthButton";
 import PrimaryButton from "@/app/components/buttons/PrimaryButton";
-import { useRouter } from "next/navigation";
+import useAuth from "@/app/hooks/useAuth";
 import google from "../../images/google.png";
 import facebook from "../../images/facebook.png";
 import twitter from "../../images/twitter.png";
-import { useState } from "react";
 import Link from "next/link";
 import Loader from "@/app/components/loader";
 import LogoText from "@/app/components/Text/LogoText";
@@ -16,59 +15,28 @@ import SubHeaderText from "@/app/components/Text/SubHeaderText";
 import FooterText from "@/app/components/Text/FooterText";
 import PoweredByLogo from "@/app/constants/PoweredByLogo";
 
+
 export default function SignUp() {
-    const router = useRouter();
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [reEnterPassword, setReEnterPassword] = useState<string>("");
-    const [fullName, setFullName] = useState<string>("");
-    const [phoneNumber, setPhoneNumber] = useState<string>("");
-    const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [showRePassword, setShowRePassword] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
-
-
-    const validateEmail = (email: string) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
-    const handleSignup = () => {
-        setError(null);
-
-        // Validation logic
-        if (!fullName) {
-            setError("Please enter your full name.");
-            return;
-        }
-        if (!email || !validateEmail(email)) {
-            setError("Please enter a valid email.");
-            return;
-        }
-        if (!phoneNumber) {
-            setError("Please enter your phone number.");
-            return;
-        }
-        if (!password) {
-            setError("Please enter a password.");
-            return;
-        }
-        if (password !== reEnterPassword) {
-            setError("Passwords do not match.");
-            return;
-        }
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            router.push('/auth/otp');
-            console.log(`Full Name: ${fullName}, Email: ${email}, Phone: ${phoneNumber}, Password: ${password}`);
-        }, 3000);
-    };
-
-    const handleOAuthSignup = (platform: string) => {
-        console.log(`OAuth Signup with ${platform}`);
-    }
+    const {
+        email,
+        setEmail,
+        password,
+        setPassword,
+        fullName,     
+        loading,
+        showPassword,
+        setShowPassword,
+        error,
+        setFullName,
+        phoneNumber,
+        setPhoneNumber,
+        reEnterPassword,
+        setReEnterPassword,
+        showRePassword,
+        setShowRePassword,
+        handleOAuthSignup,
+        handleSignup
+    } = useAuth();
 
     const SignupInputFieldArrays = [
         {
@@ -194,7 +162,7 @@ export default function SignUp() {
                                     <FooterText placeholder="By signing in, you agree to our" />
                                     <FooterText placeholder={<> Terms and Conditions <span className="text-gray-400"> and</span> Privacy Policy </>} className="text-primary font-medium" />
                                 </div>
-                                <PoweredByLogo />
+                                <PoweredByLogo/>
                             </div>
                         </div>
                     </div>

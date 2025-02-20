@@ -1,15 +1,7 @@
+import { OffenseDetailFormProps } from "@/app/data/list";
 import React, { ReactElement } from "react";
 
-interface OffenseDetailFormProps {
-    profileImage: string;
-    studentName: string;
-    studentId: string;
-    timestamp: string;
-    offenseType: string;
-    color: string;
-    status: string;
-    index: number;
-}
+
 
 const OffenseDetailForm: React.FC<OffenseDetailFormProps> = ({
     index,

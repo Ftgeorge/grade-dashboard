@@ -10,8 +10,8 @@ import FooterText from "@/app/components/Text/FooterText";
 import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";
 import SubHeaderText from "@/app/components/Text/SubHeaderText";
+import { OtpProps } from "@/app/data/list";
 
-interface OtpProps { }
 
 const Otp: React.FC<OtpProps> = () => {
     const router = useRouter();
@@ -20,55 +20,54 @@ const Otp: React.FC<OtpProps> = () => {
     const [isOtpSent, setIsOtpSent] = useState<boolean>(false);
     const [otpInput, setOtpInput] = useState<string[]>(new Array(6).fill(""));
     const [resendOtpCountdown, setResendOtpCountdown] = useState<number>(30);
-    const [loading, setIsLoading] = useState<boolean>(false); // Preloader state
-    const [otpError, setOtpError] = useState<string | null>(null); // State for OTP validation error
+    const [loading, setIsLoading] = useState<boolean>(false);
+    const [otpError, setOtpError] = useState<string | null>(null);
 
     // Create refs for each OTP input field
     const inputRefs = useRef<Array<HTMLInputElement | null>>(new Array(6).fill(null));
 
     const sendOtp = async () => {
-        setIsLoading(true); // Show preloader
+        setIsLoading(true);
         try {
             setTimeout(() => {
                 console.log("OTP sent successfully!");
                 setIsOtpSent(true);
                 setResendOtpCountdown(30);
                 countdown();
-                setIsLoading(false); // Hide preloader
+                setIsLoading(false);
             }, 2000);
         } catch (error) {
             setError("Failed to send OTP");
-            setIsLoading(false); // Hide preloader in case of error
+            setIsLoading(false);
         }
     };
 
     const verifyOtp = async () => {
-        // OTP validation: check if all input fields are filled
         if (otp.length < 6) {
-            setOtpError("Please enter a valid 6-digit OTP"); // Show validation error
+            setOtpError("Please enter a valid 6-digit OTP");
             return;
         }
 
-        setIsLoading(true); // Show preloader
+        setIsLoading(true);
         try {
             setTimeout(() => {
                 console.log("OTP verified successfully!");
                 router.push("/auth/sign-in");
-                setIsLoading(false); // Hide preloader
+                setIsLoading(false);
             }, 3000);
         } catch (error) {
             setError("Invalid OTP");
-            setIsLoading(false); // Hide preloader in case of error
+            setIsLoading(false); 
         }
     };
 
     const handleOtpChange = (index: number, value: string) => {
-        if (/^[0-9]$/.test(value)) { // Only allow single-digit numbers
+        if (/^[0-9]$/.test(value)) {
             const newOtpInput = [...otpInput];
             newOtpInput[index] = value;
             setOtpInput(newOtpInput);
             setOtp(newOtpInput.join(""));
-            setOtpError(null); // Clear OTP error on input change
+            setOtpError(null);
 
             // Focus on the next input field
             if (index < 5 && value !== "") {

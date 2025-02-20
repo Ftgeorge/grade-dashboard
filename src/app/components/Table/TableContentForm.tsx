@@ -1,16 +1,5 @@
+import { TableContentFormProps } from "@/app/data/list";
 import React from "react";
-
-interface TableContentFormProps {
-    profileImage: string;
-    studentName: string;
-    studentId: string;
-    timestamp: string;
-    offenseType: string;
-    color: string;
-    status: string;
-    email?: string;
-
-}
 
 const TableContentForm: React.FC<TableContentFormProps> = ({
     profileImage,

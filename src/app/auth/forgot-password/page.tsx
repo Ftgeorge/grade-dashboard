@@ -7,10 +7,7 @@ import LogoText from "@/app/components/Text/LogoText";
 import HeaderText from "@/app/components/Text/HeaderText";
 import PoweredByLogo from "@/app/constants/PoweredByLogo";
 import InputField from "@/app/components/inputs/AuthInput";
-
-interface ForgetPasswordProps {
-    // Add any props types here
-}
+import { ForgetPasswordProps } from "@/app/data/list";
 
 const ForgetPassword: React.FC<ForgetPasswordProps> = () => {
     const router = useRouter();

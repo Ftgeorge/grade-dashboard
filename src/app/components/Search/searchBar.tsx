@@ -1,10 +1,7 @@
+import { SearchBarProps } from "@/app/data/list";
 import React, { useState } from "react";
 
-interface SearchBarProps {
-    value?: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 
-}
 
 const SearchBar: React.FC<SearchBarProps> = ({
     value,

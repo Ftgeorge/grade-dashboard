@@ -1,8 +1,6 @@
+import { HeaderTextProps } from "@/app/data/list";
 import React from "react";
 
-interface HeaderTextProps {
-    placeholder?: string;
-}
 
 const HeaderText: React.FC<HeaderTextProps> = ({
     placeholder

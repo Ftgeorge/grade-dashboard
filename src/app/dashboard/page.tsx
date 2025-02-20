@@ -13,13 +13,8 @@ import Preloader from "../components/animation/preloader.animation";
 import PreloaderPage from "../components/animation/preloaderPage";
 import PoweredByLogo from "../constants/PoweredByLogo";
 import PrimaryText from "../components/Text/PrimaryText";
+import { MenuItem } from "../data/list";
 
-interface MenuItem {
-    label?: string;
-    icon?: JSX.Element;
-    path?: string;
-    group?: string;
-}
 
 const menuItems: MenuItem[] = [
     { group: "Main" },

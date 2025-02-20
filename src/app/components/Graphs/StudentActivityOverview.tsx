@@ -4,13 +4,8 @@ import { PiStudentFill } from "react-icons/pi";
 import { HiUsers } from "react-icons/hi";
 import { ChartData, ChartOptions } from "chart.js";
 import SectionHeader from "../../constants/SectionHeader";
+import { StudentActivityProps } from "@/app/data/list";
 
-type StudentActivityProps = {
-    barData: ChartData<"bar">;
-    barOptions: ChartOptions<"bar">;
-    doughnutData: ChartData<"doughnut">;
-    doughnutOptions: ChartOptions<"doughnut">;
-};
 
 const StudentActivityOverview: React.FC<StudentActivityProps> = ({ barData, barOptions, doughnutData, doughnutOptions }) => {
     return (

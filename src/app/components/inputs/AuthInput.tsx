@@ -1,18 +1,7 @@
 import React from "react";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
-interface AuthInputProps {
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    placeholder: string;
-    error?: string | null;
-    errorMessage?: string;
-    type?: string;
-    onClick?: () => void;
-    showIcon?: boolean;
-    showPassword?: boolean;
-}
+import { AuthInputProps } from "@/app/data/list";
 
 const InputField: React.FC<AuthInputProps> = ({
     value,

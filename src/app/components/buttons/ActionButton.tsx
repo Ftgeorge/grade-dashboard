@@ -1,10 +1,6 @@
+import { ActionButtonProps } from '@/app/data/list';
 import React from 'react';
 
-interface ActionButtonProps {
-    children: React.ReactNode;
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    className?: string;
-}
 
 const ActionButton: React.FC<ActionButtonProps> = ({
     children,

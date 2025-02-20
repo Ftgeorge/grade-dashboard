@@ -4,16 +4,14 @@ import React, { useState } from "react";
 import DashboardLayout from "../page";
 import { FaBook, FaRegFileLines } from "react-icons/fa6";
 import { BiBlock, BiCheck, BiDownload } from "react-icons/bi";
-import { mockData, Student } from "@/app/components/mockData";
+import { mockData } from "@/app/components/mockData";
 import SectionHeader from "@/app/constants/SectionHeader";
 import SearchBar from "@/app/components/Search/searchBar";
 import ActionButton from "@/app/components/buttons/ActionButton";
 import TableHeaderText from "@/app/components/Table/TableHeaderText";
 import TableContentForm from "@/app/components/Table/TableContentForm";
-
-
-
-
+import { StudentManagementHeaders } from "@/app/data/student-management/arrays";
+import { Student } from "@/app/data/list";
 
 const getStatusColor = (status: "Pending Review" | "Terminated" | "blocked" | "active" | "suspended" | "Resolved" | "Under Investigation" | "Under Review") => {
     switch (status) {
@@ -88,16 +86,6 @@ export default function StudentManagement() {
         }
     ];
 
-    const StudentManagementHeaders = [
-        { headerText: "Select" },
-        { headerText: "Profile" },
-        { headerText: "Student Name" },
-        { headerText: "Student ID" },
-        { headerText: "email" },
-        { headerText: "Timestamp" },
-        { headerText: "Type of Offense" },
-        { headerText: "Status" },
-    ];
 
     return (
         <DashboardLayout>

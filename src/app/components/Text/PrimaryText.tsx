@@ -1,9 +1,6 @@
+import { PrimaryTextProps } from "@/app/data/list";
 import React from "react";
 
-interface PrimaryTextProps {
-    placeholder?: string;
-    className?: string;
-}
 
 const PrimaryText: React.FC<PrimaryTextProps> = ({
     placeholder,

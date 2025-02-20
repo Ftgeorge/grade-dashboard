@@ -1,9 +1,7 @@
 import { IconType } from "react-icons";
+import { HeaderProps } from "../data/list";
 
-interface HeaderProps {
-    title: string;
-    Icon: IconType;
-};
+
 
 
 const SectionHeader: React.FC<HeaderProps> = ({ title, Icon }) => {

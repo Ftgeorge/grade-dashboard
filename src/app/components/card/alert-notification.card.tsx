@@ -1,13 +1,7 @@
+import { AlertNotificationCardProps } from '@/app/data/list';
 import React from 'react';
 
-interface AlertNotificationCardProps {
-    type: 'alert' | 'notification';
-    message: string;
-    username?: string; // optional for notifications
-    studentId?: string; // optional for notifications
-    profileImage?: string; // optional for alerts
-    time: string;
-}
+
 
 const AlertNotificationCard: React.FC<AlertNotificationCardProps> = ({
     type,

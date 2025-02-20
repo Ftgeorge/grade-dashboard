@@ -1,12 +1,8 @@
+import { OauthButtonProps } from '@/app/data/list';
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 
-interface OauthButtonProps {
-    imageClassname?: string;
-    onClick: () => void;
-    className?: string;
-    ImageSource: StaticImageData | string;
-}
+
 
 const OauthButton: React.FC<OauthButtonProps> = ({
     imageClassname,

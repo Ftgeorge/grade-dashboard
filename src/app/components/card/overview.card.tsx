@@ -1,14 +1,8 @@
+import { DashboardCardProps } from "@/app/data/list";
 import React from "react";
 import { IconType } from "react-icons";
 
-interface DashboardCardProps {
-    icon: IconType;
-    count: number;
-    label: string;
-    borderColor: string;
-    bgColor: string;
-    textColor: string;
-}
+
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ icon: Icon, count, label, borderColor, bgColor, textColor }) => {
     return (

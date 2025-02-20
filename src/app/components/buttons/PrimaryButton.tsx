@@ -1,11 +1,7 @@
+import { PrimaryButtonProps } from '@/app/data/list';
 import React from 'react';
 
-interface PrimaryButtonProps {
-    children: React.ReactNode;
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    className?: string;
-    disabled?: boolean;
-}
+
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     children,

@@ -1,9 +1,5 @@
+import { TableContentTextProps } from "@/app/data/list";
 import React from "react";
-
-interface TableContentTextProps {
-    placeholder: string;
-    
-}
 
 const TableContentText: React.FC<TableContentTextProps> = ({ placeholder }) => {
     return (

@@ -1,10 +1,5 @@
+import { FooterTextProps } from "@/app/data/list";
 import React from "react";
-
-interface FooterTextProps {
-    className?: string;
-    placeholder: string | React.ReactNode;
-    onClick?: () => void
-}
 
 const FooterText: React.FC<FooterTextProps> = (
     {
